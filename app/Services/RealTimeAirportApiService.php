@@ -35,111 +35,77 @@ class RealTimeAirportApiService
             }
 
             $airportsData = $response->json();
-            $importedCount = 0;
 
-            // Country code mapping dictionary
             $countryNames = [
-                'KH' => 'Cambodia',
-                'US' => 'United States',
-                'FR' => 'France',
-                'JP' => 'Japan',
-                'SG' => 'Singapore',
-                'TH' => 'Thailand',
-                'GB' => 'United Kingdom',
-                'DE' => 'Germany',
-                'NL' => 'Netherlands',
-                'AE' => 'United Arab Emirates',
-                'QA' => 'Qatar',
-                'MY' => 'Malaysia',
-                'VN' => 'Vietnam',
-                'ID' => 'Indonesia',
-                'KR' => 'South Korea',
-                'CN' => 'China',
-                'AU' => 'Australia',
-                'CA' => 'Canada',
+                'KH' => 'Cambodia', 'US' => 'United States', 'FR' => 'France',
+                'JP' => 'Japan', 'SG' => 'Singapore', 'TH' => 'Thailand',
+                'GB' => 'United Kingdom', 'DE' => 'Germany', 'NL' => 'Netherlands',
+                'AE' => 'United Arab Emirates', 'QA' => 'Qatar', 'MY' => 'Malaysia',
+                'VN' => 'Vietnam', 'ID' => 'Indonesia', 'KR' => 'South Korea',
+                'CN' => 'China', 'AU' => 'Australia', 'CA' => 'Canada',
             ];
 
-            // City normalization dictionary for major hubs
             $cityMap = [
-                'CDG' => 'Paris',
-                'JFK' => 'New York',
-                'HND' => 'Tokyo',
-                'NRT' => 'Tokyo',
-                'LHR' => 'London',
-                'PNH' => 'Phnom Penh',
-                'SAI' => 'Siem Reap',
-                'KOS' => 'Sihanoukville',
-                'BKK' => 'Bangkok',
-                'SIN' => 'Singapore',
-                'DXB' => 'Dubai',
-                'KUL' => 'Kuala Lumpur',
-                'LAX' => 'Los Angeles',
-                'SGN' => 'Ho Chi Minh City',
-                'ICN' => 'Seoul',
+                'CDG' => 'Paris', 'JFK' => 'New York', 'HND' => 'Tokyo',
+                'NRT' => 'Tokyo', 'LHR' => 'London', 'PNH' => 'Phnom Penh',
+                'SAI' => 'Siem Reap', 'KOS' => 'Sihanoukville', 'BKK' => 'Bangkok',
+                'SIN' => 'Singapore', 'DXB' => 'Dubai', 'KUL' => 'Kuala Lumpur',
+                'LAX' => 'Los Angeles', 'SGN' => 'Ho Chi Minh City', 'ICN' => 'Seoul',
             ];
 
-            // Step 1: Import priority major hubs first by checking $data['iata']
+            $rows = [];
+            $now = now()->toDateTimeString();
+
+            // Step 1: Priority hubs first
             foreach ($airportsData as $icao => $data) {
                 $iata = strtoupper($data['iata'] ?? '');
                 if (in_array($iata, $this->priorityCodes)) {
                     $countryCode = strtoupper(trim($data['country'] ?? ''));
-                    $country = $countryNames[$countryCode] ?? $countryCode;
-                    $city = $cityMap[$iata] ?? ($data['city'] ?? $data['name']);
-
-                    Airport::updateOrCreate(
-                        ['code' => $iata],
-                        [
-                            'name' => substr($data['name'], 0, 150),
-                            'city' => substr($city, 0, 100),
-                            'country' => substr($country, 0, 100),
-                            'timezone' => $data['tz'] ?? 'UTC',
-                        ]
-                    );
-                    $importedCount++;
+                    $rows[$iata] = [
+                        'code'       => $iata,
+                        'name'       => substr($data['name'], 0, 150),
+                        'city'       => substr($cityMap[$iata] ?? ($data['city'] ?? $data['name']), 0, 100),
+                        'country'    => substr($countryNames[$countryCode] ?? $countryCode, 0, 100),
+                        'timezone'   => $data['tz'] ?? 'UTC',
+                        'created_at' => $now,
+                        'updated_at' => $now,
+                    ];
                 }
             }
 
-            // Step 2: Import additional live airports up to maxImport limit
+            // Step 2: Fill up to maxImport
             foreach ($airportsData as $icao => $data) {
-                if ($importedCount >= $maxImport) {
-                    break;
-                }
+                if (count($rows) >= $maxImport) break;
 
                 $code = strtoupper($data['iata'] ?? '');
-                if (empty($code) || in_array($code, $this->priorityCodes)) {
+                if (empty($code) || strlen($code) !== 3 || isset($rows[$code])) continue;
+                if (empty($data['city']) || empty($data['country']) || empty($data['name'])) continue;
+
+                $countryCode = strtoupper(trim($data['country']));
+                $country = $countryNames[$countryCode] ?? $countryCode;
+
+                // Only allow the 3 major Cambodian airports
+                if (($country === 'Cambodia' || $countryCode === 'KH') && !in_array($code, ['PNH', 'SAI', 'KOS'])) {
                     continue;
                 }
 
-                if (
-                    strlen($code) === 3 && 
-                    ! empty($data['city']) && 
-                    ! empty($data['country']) && 
-                    ! empty($data['name'])
-                ) {
-                    $countryCode = strtoupper(trim($data['country']));
-                    $country = $countryNames[$countryCode] ?? $countryCode;
-                    $city = $cityMap[$code] ?? $data['city'];
-
-                    // In Cambodia, strictly enforce ONLY the 3 major commercial operational airports: PNH, SAI, KOS
-                    if (($country === 'Cambodia' || $countryCode === 'KH') && ! in_array($code, ['PNH', 'SAI', 'KOS'])) {
-                        continue;
-                    }
-
-                    Airport::updateOrCreate(
-                        ['code' => $code],
-                        [
-                            'name' => substr($data['name'], 0, 150),
-                            'city' => substr($city, 0, 100),
-                            'country' => substr($country, 0, 100),
-                            'timezone' => $data['tz'] ?? 'UTC',
-                        ]
-                    );
-
-                    $importedCount++;
-                }
+                $rows[$code] = [
+                    'code'       => $code,
+                    'name'       => substr($data['name'], 0, 150),
+                    'city'       => substr($cityMap[$code] ?? $data['city'], 0, 100),
+                    'country'    => substr($country, 0, 100),
+                    'timezone'   => $data['tz'] ?? 'UTC',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ];
             }
 
-            return $importedCount;
+            // Bulk upsert in chunks of 50
+            foreach (array_chunk(array_values($rows), 50) as $chunk) {
+                Airport::upsert($chunk, ['code'], ['name', 'city', 'country', 'timezone', 'updated_at']);
+            }
+
+            return count($rows);
 
         } catch (\Throwable $e) {
             Log::error("RealTimeAirportApiService Exception: " . $e->getMessage());
