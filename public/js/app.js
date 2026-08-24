@@ -1916,6 +1916,9 @@ const UI = {
         document.querySelectorAll('input[name="filter-stops"]').forEach(r => {
             r.addEventListener('change', () => this.applyFlightFilters());
         });
+        document.querySelectorAll('.airline-checkbox').forEach(cb => {
+            cb.addEventListener('change', () => this.applyFlightFilters());
+        });
         document.getElementById('search-sort-by')?.addEventListener('change', () => this.applyFlightFilters());
 
         // Mobile drawer toggle
