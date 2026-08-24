@@ -146,69 +146,142 @@
                         </p>
                     </div>
 
-                    <!-- Hero Search Widget Card -->
-                    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl shadow-slate-950/40 border border-slate-100 max-w-5xl mx-auto">
-                        <form id="hero-search-form" class="space-y-6">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                                <!-- From Origin -->
-                                <div class="space-y-1.5">
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">From Origin</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                                            <i data-lucide="plane-takeoff" class="w-5 h-5"></i>
-                                        </div>
-                                        <select id="hero-origin" class="select-origin w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-blue-600 focus:bg-white focus:outline-none">
-                                        </select>
-                                    </div>
-                                </div>
+                    <!-- LUXURY MODERN FLIGHT SEARCH WIDGET -->
+                    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl shadow-slate-950/40 border border-slate-100 max-w-5xl mx-auto space-y-6">
+                        
+                        <!-- Top Controls: Trip Type & Passenger / Class Selector -->
+                        <div class="flex flex-wrap items-center justify-between gap-4 pb-2 border-b border-slate-100">
+                            <!-- Trip Type Buttons -->
+                            <div class="flex items-center gap-1.5 p-1 bg-slate-100 rounded-2xl">
+                                <button onclick="UI.setTripType('round-trip')" data-type="round-trip" class="trip-tab-btn px-4 py-1.5 rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition">
+                                    Round Trip
+                                </button>
+                                <button onclick="UI.setTripType('one-way')" data-type="one-way" class="trip-tab-btn px-4 py-1.5 rounded-xl font-semibold text-xs text-slate-600 hover:text-slate-900 transition">
+                                    One Way
+                                </button>
+                                <button onclick="UI.setTripType('multi-city')" data-type="multi-city" class="trip-tab-btn px-4 py-1.5 rounded-xl font-semibold text-xs text-slate-600 hover:text-slate-900 transition">
+                                    Multi-City
+                                </button>
+                            </div>
 
-                                <!-- To Destination -->
-                                <div class="space-y-1.5">
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">To Destination</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                                            <i data-lucide="plane-landing" class="w-5 h-5"></i>
-                                        </div>
-                                        <select id="hero-destination" class="select-destination w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-blue-600 focus:bg-white focus:outline-none">
-                                        </select>
-                                    </div>
-                                </div>
+                            <!-- Passenger & Cabin Class Trigger Button -->
+                            <div class="relative">
+                                <button onclick="UI.togglePassengerPopover()" class="px-4 py-2 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-xs font-bold text-slate-800 flex items-center gap-2 transition shadow-sm">
+                                    <i data-lucide="users" class="w-4 h-4 text-blue-600"></i>
+                                    <span id="hero-passenger-summary">1 Passenger, Economy</span>
+                                    <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400"></i>
+                                </button>
 
-                                <!-- Departure Date -->
-                                <div class="space-y-1.5">
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">Departure</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                                            <i data-lucide="calendar" class="w-5 h-5"></i>
+                                <!-- Passenger & Cabin Popover Menu -->
+                                <div id="passenger-popover" class="hidden absolute right-0 top-full mt-2 w-72 bg-white rounded-3xl p-5 shadow-2xl border border-slate-200 z-50 space-y-4">
+                                    <div>
+                                        <span class="text-xs font-black uppercase tracking-wider text-slate-400 block mb-3">Travelers</span>
+                                        
+                                        <!-- Adults Counter -->
+                                        <div class="flex items-center justify-between py-2 border-b border-slate-100">
+                                            <div>
+                                                <span class="text-xs font-bold text-slate-800 block">Adults</span>
+                                                <span class="text-[10px] text-slate-400">Age 12+</span>
+                                            </div>
+                                            <div class="flex items-center gap-2.5">
+                                                <button onclick="UI.changePassengerCount('adults', -1)" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-xs flex items-center justify-center">-</button>
+                                                <span id="pass-adult-count" class="font-black text-xs w-4 text-center">1</span>
+                                                <button onclick="UI.changePassengerCount('adults', 1)" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-xs flex items-center justify-center">+</button>
+                                            </div>
                                         </div>
-                                        <input type="date" id="hero-date" value="2026-08-25" class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-blue-600 focus:bg-white focus:outline-none">
-                                    </div>
-                                </div>
 
-                                <!-- Passengers & Class -->
-                                <div class="space-y-1.5">
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">Travel Class</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                                            <i data-lucide="armchair" class="w-5 h-5"></i>
+                                        <!-- Children Counter -->
+                                        <div class="flex items-center justify-between py-2">
+                                            <div>
+                                                <span class="text-xs font-bold text-slate-800 block">Children</span>
+                                                <span class="text-[10px] text-slate-400">Age 2-11</span>
+                                            </div>
+                                            <div class="flex items-center gap-2.5">
+                                                <button onclick="UI.changePassengerCount('children', -1)" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-xs flex items-center justify-center">-</button>
+                                                <span id="pass-child-count" class="font-black text-xs w-4 text-center">0</span>
+                                                <button onclick="UI.changePassengerCount('children', 1)" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-xs flex items-center justify-center">+</button>
+                                            </div>
                                         </div>
-                                        <select id="hero-cabin" class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-blue-600 focus:bg-white focus:outline-none">
-                                            <option value="Economy">Economy Class</option>
-                                            <option value="Business">Business Class</option>
-                                            <option value="First">First Class Suites</option>
-                                        </select>
                                     </div>
-                                </div>
 
-                                <!-- Submit Button -->
-                                <div class="space-y-1.5 flex flex-col justify-end">
-                                    <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-700 hover:to-sky-600 text-white font-bold text-sm rounded-xl shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 transition-all flex items-center justify-center gap-2">
-                                        <i data-lucide="search" class="w-4 h-4"></i>
-                                        <span>Search Flights</span>
-                                    </button>
+                                    <div>
+                                        <span class="text-xs font-black uppercase tracking-wider text-slate-400 block mb-2">Cabin Class</span>
+                                        <div class="grid grid-cols-3 gap-1.5">
+                                            <button onclick="UI.selectCabin('Economy')" data-cabin="Economy" class="cabin-option-btn py-2 px-2 rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition text-center">Economy</button>
+                                            <button onclick="UI.selectCabin('Business')" data-cabin="Business" class="cabin-option-btn py-2 px-2 rounded-xl font-semibold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center">Business</button>
+                                            <button onclick="UI.selectCabin('First')" data-cabin="First" class="cabin-option-btn py-2 px-2 rounded-xl font-semibold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center">First</button>
+                                        </div>
+                                    </div>
+
+                                    <button onclick="UI.closePassengerPopover()" class="w-full py-2 bg-slate-900 text-white text-xs font-bold rounded-xl hover:bg-slate-800 transition">Done</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+
+                        <!-- MAIN ROUTE PICKER ROW -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 relative items-center">
+                            
+                            <!-- From Origin Trigger Card -->
+                            <div class="lg:col-span-5 relative">
+                                <div onclick="UI.openAirportPicker('hero-origin')" class="p-4 rounded-2xl bg-slate-50 hover:bg-blue-50/60 border border-slate-200 hover:border-blue-300 transition-all cursor-pointer group space-y-1">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-blue-600 transition">Departure City</span>
+                                        <span id="hero-origin-code" class="px-2 py-0.5 rounded-lg text-xs font-mono font-black bg-blue-100 text-blue-700">PNH</span>
+                                    </div>
+                                    <div id="hero-origin-city" class="text-xl font-black text-slate-900 group-hover:text-blue-600 transition truncate">Phnom Penh</div>
+                                    <div id="hero-origin-name" class="text-xs text-slate-500 font-medium truncate">🇰🇭 Techo International Airport</div>
+                                </div>
+                            </div>
+
+                            <!-- Swap Route Button (Centered) -->
+                            <div class="lg:col-span-2 flex justify-center -my-2 lg:my-0 z-10">
+                                <button type="button" onclick="UI.swapAirports()" class="swap-btn w-11 h-11 rounded-2xl bg-white border-2 border-slate-200 hover:border-blue-500 text-slate-700 hover:text-blue-600 shadow-md flex items-center justify-center transition" title="Swap Route">
+                                    <i data-lucide="arrow-left-right" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+
+                            <!-- To Destination Trigger Card -->
+                            <div class="lg:col-span-5 relative">
+                                <div onclick="UI.openAirportPicker('hero-dest')" class="p-4 rounded-2xl bg-slate-50 hover:bg-blue-50/60 border border-slate-200 hover:border-blue-300 transition-all cursor-pointer group space-y-1">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-blue-600 transition">Destination City</span>
+                                        <span id="hero-dest-code" class="px-2 py-0.5 rounded-lg text-xs font-mono font-black bg-sky-100 text-sky-700">SIN</span>
+                                    </div>
+                                    <div id="hero-dest-city" class="text-xl font-black text-slate-900 group-hover:text-blue-600 transition truncate">Singapore</div>
+                                    <div id="hero-dest-name" class="text-xs text-slate-500 font-medium truncate">🇸🇬 Singapore Changi Airport</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DATE & SEARCH CTA ROW -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 items-center">
+                            <!-- Departure Date Card -->
+                            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block">Departure Date</span>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="calendar" class="w-4 h-4 text-blue-600 shrink-0"></i>
+                                    <input type="date" id="hero-date" value="2026-08-25" class="bg-transparent border-0 font-bold text-sm text-slate-800 focus:outline-none w-full cursor-pointer">
+                                </div>
+                            </div>
+
+                            <!-- Return Date Card (Visible for Round-Trip) -->
+                            <div id="hero-return-field" class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block">Return Date</span>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="calendar-days" class="w-4 h-4 text-sky-600 shrink-0"></i>
+                                    <input type="date" id="hero-return-date" value="2026-08-30" class="bg-transparent border-0 font-bold text-sm text-slate-800 focus:outline-none w-full cursor-pointer">
+                                </div>
+                            </div>
+
+                            <!-- Search Action Button -->
+                            <div class="sm:col-span-2 lg:col-span-1">
+                                <button onclick="UI.executeHeroSearch()" class="w-full py-4 bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 hover:from-blue-500 hover:to-sky-500 text-white font-black text-sm rounded-2xl shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+                                    <i data-lucide="search" class="w-5 h-5"></i>
+                                    <span>Search Available Flights</span>
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Live Aviation Stats Counter -->
@@ -321,18 +394,26 @@
                             <button onclick="UI.resetSearchFilters()" class="text-xs text-blue-600 hover:underline font-semibold">Reset</button>
                         </div>
 
-                        <!-- Origin Select -->
+                        <!-- Origin Custom Selector -->
                         <div class="space-y-1.5">
-                            <label class="text-xs font-bold text-slate-600">Origin Airport</label>
-                            <select id="search-filter-origin" class="select-origin w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold">
-                            </select>
+                            <label class="text-xs font-bold text-slate-600">Origin Hub</label>
+                            <div onclick="UI.openAirportPicker('filter-origin')" class="p-3 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 cursor-pointer flex items-center justify-between transition">
+                                <div class="truncate">
+                                    <span id="filter-origin-city" class="text-xs font-bold text-slate-800 block truncate">Phnom Penh</span>
+                                </div>
+                                <span id="filter-origin-code" class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-100 text-blue-700">PNH</span>
+                            </div>
                         </div>
 
-                        <!-- Destination Select -->
+                        <!-- Destination Custom Selector -->
                         <div class="space-y-1.5">
-                            <label class="text-xs font-bold text-slate-600">Destination Airport</label>
-                            <select id="search-filter-destination" class="select-destination w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold">
-                            </select>
+                            <label class="text-xs font-bold text-slate-600">Destination Hub</label>
+                            <div onclick="UI.openAirportPicker('filter-dest')" class="p-3 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 cursor-pointer flex items-center justify-between transition">
+                                <div class="truncate">
+                                    <span id="filter-dest-city" class="text-xs font-bold text-slate-800 block truncate">Singapore</span>
+                                </div>
+                                <span id="filter-dest-code" class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-sky-100 text-sky-700">SIN</span>
+                            </div>
                         </div>
 
                         <!-- Max Price Range Slider -->
@@ -593,6 +674,45 @@
 
     </main>
 
+    <!-- ======================================================= -->
+    <!-- MODAL: LUXURY AIRPORT AUTOCOMPLETE SEARCH SELECTOR     -->
+    <!-- ======================================================= -->
+    <div id="airport-picker-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 modal-backdrop">
+        <div class="bg-white rounded-3xl max-w-xl w-full max-h-[85vh] overflow-hidden shadow-2xl border border-slate-200 flex flex-col modal-content">
+            
+            <!-- Header with Search Input -->
+            <div class="p-6 border-b border-slate-100 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 id="picker-modal-title" class="text-lg font-black text-slate-900">Select Airport Hub</h3>
+                    <button onclick="UI.closeAirportPicker()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Instant Filter Input -->
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </div>
+                    <input type="text" id="airport-search-input" placeholder="Type city (e.g. Phnom Penh, Singapore, Tokyo) or IATA code..." class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:bg-white focus:outline-none">
+                </div>
+
+                <!-- Region Quick Filter Chips -->
+                <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
+                    <button onclick="UI.filterAirportRegion('All')" data-region="All" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-sm transition whitespace-nowrap">All Hubs</button>
+                    <button onclick="UI.filterAirportRegion('Southeast Asia')" data-region="Southeast Asia" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">Southeast Asia</button>
+                    <button onclick="UI.filterAirportRegion('East Asia')" data-region="East Asia" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">East Asia</button>
+                    <button onclick="UI.filterAirportRegion('Middle East')" data-region="Middle East" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">Middle East</button>
+                    <button onclick="UI.filterAirportRegion('Europe')" data-region="Europe" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">Europe</button>
+                    <button onclick="UI.filterAirportRegion('North America')" data-region="North America" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">North America</button>
+                </div>
+            </div>
+
+            <!-- Airport List Results Container -->
+            <div id="airport-picker-list" class="p-6 overflow-y-auto flex-1 space-y-2.5 max-h-96"></div>
+        </div>
+    </div>
+
     <!-- ========================================== -->
     <!-- MODAL 1: INTERACTIVE AIRPLANE SEAT MAP     -->
     <!-- ========================================== -->
@@ -825,11 +945,25 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-700">Origin Hub</label>
-                        <select id="new-flight-origin" class="select-origin w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold"></select>
+                        <select id="new-flight-origin" class="select-origin w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold">
+                            <option value="PNH">Phnom Penh (PNH)</option>
+                            <option value="SIN">Singapore (SIN)</option>
+                            <option value="BKK">Bangkok (BKK)</option>
+                            <option value="HND">Tokyo (HND)</option>
+                            <option value="DXB">Dubai (DXB)</option>
+                            <option value="LHR">London (LHR)</option>
+                        </select>
                     </div>
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-700">Destination Hub</label>
-                        <select id="new-flight-dest" class="select-destination w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold"></select>
+                        <select id="new-flight-dest" class="select-destination w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold">
+                            <option value="SIN">Singapore (SIN)</option>
+                            <option value="PNH">Phnom Penh (PNH)</option>
+                            <option value="BKK">Bangkok (BKK)</option>
+                            <option value="HND">Tokyo (HND)</option>
+                            <option value="DXB">Dubai (DXB)</option>
+                            <option value="LHR">London (LHR)</option>
+                        </select>
                     </div>
                 </div>
 

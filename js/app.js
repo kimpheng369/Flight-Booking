@@ -4,20 +4,20 @@
 
 // --- SEED DATA DEFINITIONS ---
 const INITIAL_AIRPORTS = [
-    { code: 'PNH', name: 'Techo International Airport', city: 'Phnom Penh', country: 'Cambodia', flag: '🇰🇭' },
-    { code: 'SAI', name: 'Siem Reap Angkor International Airport', city: 'Siem Reap', country: 'Cambodia', flag: '🇰🇭' },
-    { code: 'SIN', name: 'Singapore Changi Airport', city: 'Singapore', country: 'Singapore', flag: '🇸🇬' },
-    { code: 'BKK', name: 'Suvarnabhumi Airport', city: 'Bangkok', country: 'Thailand', flag: '🇹🇭' },
-    { code: 'KUL', name: 'Kuala Lumpur International Airport', city: 'Kuala Lumpur', country: 'Malaysia', flag: '🇲🇾' },
-    { code: 'SGN', name: 'Tan Son Nhat International Airport', city: 'Ho Chi Minh City', country: 'Vietnam', flag: '🇻🇳' },
-    { code: 'HND', name: 'Tokyo Haneda Airport', city: 'Tokyo', country: 'Japan', flag: '🇯🇵' },
-    { code: 'ICN', name: 'Incheon International Airport', city: 'Seoul', country: 'South Korea', flag: '🇰🇷' },
-    { code: 'DXB', name: 'Dubai International Airport', city: 'Dubai', country: 'United Arab Emirates', flag: '🇦🇪' },
-    { code: 'LHR', name: 'London Heathrow Airport', city: 'London', country: 'United Kingdom', flag: '🇬🇧' },
-    { code: 'CDG', name: 'Paris Charles de Gaulle Airport', city: 'Paris', country: 'France', flag: '🇫🇷' },
-    { code: 'JFK', name: 'John F. Kennedy International Airport', city: 'New York', country: 'United States', flag: '🇺🇸' },
-    { code: 'LAX', name: 'Los Angeles International Airport', city: 'Los Angeles', country: 'United States', flag: '🇺🇸' },
-    { code: 'SYD', name: 'Sydney Kingsford Smith Airport', city: 'Sydney', country: 'Australia', flag: '🇦🇺' }
+    { code: 'PNH', name: 'Techo International Airport', city: 'Phnom Penh', country: 'Cambodia', flag: '🇰🇭', region: 'Southeast Asia' },
+    { code: 'SAI', name: 'Siem Reap Angkor International Airport', city: 'Siem Reap', country: 'Cambodia', flag: '🇰🇭', region: 'Southeast Asia' },
+    { code: 'SIN', name: 'Singapore Changi Airport', city: 'Singapore', country: 'Singapore', flag: '🇸🇬', region: 'Southeast Asia' },
+    { code: 'BKK', name: 'Suvarnabhumi Airport', city: 'Bangkok', country: 'Thailand', flag: '🇹🇭', region: 'Southeast Asia' },
+    { code: 'KUL', name: 'Kuala Lumpur International Airport', city: 'Kuala Lumpur', country: 'Malaysia', flag: '🇲🇾', region: 'Southeast Asia' },
+    { code: 'SGN', name: 'Tan Son Nhat International Airport', city: 'Ho Chi Minh City', country: 'Vietnam', flag: '🇻🇳', region: 'Southeast Asia' },
+    { code: 'HND', name: 'Tokyo Haneda Airport', city: 'Tokyo', country: 'Japan', flag: '🇯🇵', region: 'East Asia' },
+    { code: 'ICN', name: 'Incheon International Airport', city: 'Seoul', country: 'South Korea', flag: '🇰🇷', region: 'East Asia' },
+    { code: 'DXB', name: 'Dubai International Airport', city: 'Dubai', country: 'United Arab Emirates', flag: '🇦🇪', region: 'Middle East' },
+    { code: 'LHR', name: 'London Heathrow Airport', city: 'London', country: 'United Kingdom', flag: '🇬🇧', region: 'Europe' },
+    { code: 'CDG', name: 'Paris Charles de Gaulle Airport', city: 'Paris', country: 'France', flag: '🇫🇷', region: 'Europe' },
+    { code: 'JFK', name: 'John F. Kennedy International Airport', city: 'New York', country: 'United States', flag: '🇺🇸', region: 'North America' },
+    { code: 'LAX', name: 'Los Angeles International Airport', city: 'Los Angeles', country: 'United States', flag: '🇺🇸', region: 'North America' },
+    { code: 'SYD', name: 'Sydney Kingsford Smith Airport', city: 'Sydney', country: 'Australia', flag: '🇦🇺', region: 'Oceania' }
 ];
 
 const INITIAL_AIRLINES = [
@@ -383,12 +383,24 @@ class AppState {
         this.storageKey = 'skybook_store_v1';
         this.loadState();
         this.currentUser = {
-            role: 'customer', // 'customer' | 'admin' | 'guest'
+            role: 'customer',
             name: 'Alex Morgan',
             email: 'alex.morgan@example.com',
             phone: '+1 (555) 349-8821',
             tier: 'Platinum Member',
             miles: 48520
+        };
+        this.search = {
+            tripType: 'round-trip',
+            origin: 'PNH',
+            destination: 'SIN',
+            date: getDateOffset(1),
+            returnDate: getDateOffset(6),
+            adults: 1,
+            children: 0,
+            cabin: 'Economy',
+            activePickerTarget: null,
+            activeRegion: 'All'
         };
         this.currentView = 'home';
         this.activeBookingFlight = null;
@@ -436,7 +448,8 @@ class AppState {
     }
 
     getAirport(code) {
-        return this.airports.find(a => a.code === code) || { code, city: code, name: code, country: '' };
+        if (!code) return { code: '', city: 'Any City', name: 'Any Airport', country: '', flag: '🌐' };
+        return this.airports.find(a => a.code === code) || { code, city: code, name: code, country: '', flag: '✈️' };
     }
 
     getAirline(id) {
@@ -453,7 +466,6 @@ class AppState {
 
     addBooking(bookingData) {
         this.bookings.unshift(bookingData);
-        // Decrease flight seat count
         const flight = this.getFlight(bookingData.flightId);
         if (flight && flight.availableSeats > 0) {
             flight.availableSeats -= 1;
@@ -491,8 +503,8 @@ const store = new AppState();
 const UI = {
     init() {
         this.initEventListeners();
-        this.populateDropdowns();
         this.updateAuthUI();
+        this.updateSearchCardDisplays();
         this.renderHome();
         this.renderPopularDestinations();
         lucide.createIcons();
@@ -563,8 +575,6 @@ const UI = {
         }
         this.updateAuthUI();
         this.showToast(`Switched active mode to: ${role.toUpperCase()}`, 'info');
-
-        // Re-render current view to adapt
         this.navigate(store.currentView);
     },
 
@@ -612,20 +622,223 @@ const UI = {
         if (modal) modal.classList.toggle('hidden');
     },
 
-    populateDropdowns() {
-        const originSelects = document.querySelectorAll('.select-origin');
-        const destSelects = document.querySelectorAll('.select-destination');
-
-        const airportOptions = store.airports.map(a => 
-            `<option value="${a.code}">${a.city} (${a.code}) - ${a.name}</option>`
-        ).join('');
-
-        originSelects.forEach(sel => {
-            sel.innerHTML = `<option value="">Any Origin Airport</option>` + airportOptions;
+    // --- LUXURY SEARCH & AIRPORT AUTOCOMPLETE PICKER ---
+    setTripType(type) {
+        store.search.tripType = type;
+        document.querySelectorAll('.trip-tab-btn').forEach(btn => {
+            if (btn.dataset.type === type) {
+                btn.className = 'trip-tab-btn px-4 py-1.5 rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition';
+            } else {
+                btn.className = 'trip-tab-btn px-4 py-1.5 rounded-xl font-semibold text-xs text-slate-600 hover:text-slate-900 transition';
+            }
         });
 
-        destSelects.forEach(sel => {
-            sel.innerHTML = `<option value="">Any Destination Airport</option>` + airportOptions;
+        const returnField = document.getElementById('hero-return-field');
+        if (returnField) {
+            returnField.classList.toggle('hidden', type === 'one-way');
+        }
+    },
+
+    updateSearchCardDisplays() {
+        const originAp = store.getAirport(store.search.origin);
+        const destAp = store.getAirport(store.search.destination);
+
+        // Update Hero Cards
+        const heroOriginCity = document.getElementById('hero-origin-city');
+        const heroOriginCode = document.getElementById('hero-origin-code');
+        const heroOriginName = document.getElementById('hero-origin-name');
+        if (heroOriginCity) heroOriginCity.textContent = originAp.city;
+        if (heroOriginCode) heroOriginCode.textContent = originAp.code || 'ANY';
+        if (heroOriginName) heroOriginName.textContent = `${originAp.flag} ${originAp.name}`;
+
+        const heroDestCity = document.getElementById('hero-dest-city');
+        const heroDestCode = document.getElementById('hero-dest-code');
+        const heroDestName = document.getElementById('hero-dest-name');
+        if (heroDestCity) heroDestCity.textContent = destAp.city;
+        if (heroDestCode) heroDestCode.textContent = destAp.code || 'ANY';
+        if (heroDestName) heroDestName.textContent = `${destAp.flag} ${destAp.name}`;
+
+        // Update Filter Sidebar Cards
+        const filterOriginCity = document.getElementById('filter-origin-city');
+        const filterOriginCode = document.getElementById('filter-origin-code');
+        if (filterOriginCity) filterOriginCity.textContent = originAp.city;
+        if (filterOriginCode) filterOriginCode.textContent = originAp.code || 'ALL';
+
+        const filterDestCity = document.getElementById('filter-dest-city');
+        const filterDestCode = document.getElementById('filter-dest-code');
+        if (filterDestCity) filterDestCity.textContent = destAp.city;
+        if (filterDestCode) filterDestCode.textContent = destAp.code || 'ALL';
+
+        // Update Passenger / Class Display
+        const totalPass = store.search.adults + store.search.children;
+        const passLabel = `${totalPass} ${totalPass === 1 ? 'Passenger' : 'Passengers'}, ${store.search.cabin}`;
+        const passDisplay = document.getElementById('hero-passenger-summary');
+        if (passDisplay) passDisplay.textContent = passLabel;
+    },
+
+    openAirportPicker(target) {
+        store.search.activePickerTarget = target;
+        const modal = document.getElementById('airport-picker-modal');
+        const titleEl = document.getElementById('picker-modal-title');
+        const inputEl = document.getElementById('airport-search-input');
+
+        if (titleEl) {
+            titleEl.textContent = target.includes('origin') ? 'Select Departure Airport' : 'Select Destination Airport';
+        }
+        if (inputEl) {
+            inputEl.value = '';
+            setTimeout(() => inputEl.focus(), 50);
+        }
+
+        store.search.activeRegion = 'All';
+        this.renderAirportPickerList();
+        modal.classList.remove('hidden');
+        lucide.createIcons();
+    },
+
+    closeAirportPicker() {
+        const modal = document.getElementById('airport-picker-modal');
+        if (modal) modal.classList.add('hidden');
+    },
+
+    selectAirport(code) {
+        const target = store.search.activePickerTarget;
+        if (target === 'hero-origin' || target === 'filter-origin') {
+            store.search.origin = code;
+        } else if (target === 'hero-dest' || target === 'filter-dest') {
+            store.search.destination = code;
+        }
+
+        this.closeAirportPicker();
+        this.updateSearchCardDisplays();
+
+        // If in flights view, reapply filters
+        if (store.currentView === 'flights') {
+            this.applyFlightFilters();
+        }
+    },
+
+    swapAirports() {
+        const temp = store.search.origin;
+        store.search.origin = store.search.destination;
+        store.search.destination = temp;
+
+        this.updateSearchCardDisplays();
+        this.showToast('Route flipped successfully', 'info');
+
+        if (store.currentView === 'flights') {
+            this.applyFlightFilters();
+        }
+    },
+
+    filterAirportRegion(region) {
+        store.search.activeRegion = region;
+        document.querySelectorAll('.region-chip-btn').forEach(btn => {
+            if (btn.dataset.region === region) {
+                btn.className = 'region-chip-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-sm transition whitespace-nowrap';
+            } else {
+                btn.className = 'region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap';
+            }
+        });
+        this.renderAirportPickerList();
+    },
+
+    renderAirportPickerList(searchQuery = '') {
+        const container = document.getElementById('airport-picker-list');
+        if (!container) return;
+
+        const query = searchQuery.toLowerCase().trim();
+        const region = store.search.activeRegion;
+
+        let filtered = store.airports.filter(ap => {
+            if (region !== 'All' && ap.region !== region) return false;
+            if (query) {
+                return ap.city.toLowerCase().includes(query) ||
+                       ap.code.toLowerCase().includes(query) ||
+                       ap.name.toLowerCase().includes(query) ||
+                       ap.country.toLowerCase().includes(query);
+            }
+            return true;
+        });
+
+        let html = `
+            <!-- Any Airport Option -->
+            <div onclick="UI.selectAirport('')" class="airport-item p-3.5 rounded-2xl border border-slate-200 hover:border-blue-400 bg-white cursor-pointer flex items-center justify-between group">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-base group-hover:bg-blue-600 group-hover:text-white transition">
+                        🌐
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-black text-slate-900 group-hover:text-blue-600 transition">Any Airport Hub</h4>
+                        <p class="text-xs text-slate-400">Show all flights without filtering location</p>
+                    </div>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-700">ANY</span>
+            </div>
+        `;
+
+        filtered.forEach(ap => {
+            html += `
+                <div onclick="UI.selectAirport('${ap.code}')" class="airport-item p-3.5 rounded-2xl border border-slate-200 hover:border-blue-400 bg-white cursor-pointer flex items-center justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg group-hover:scale-105 transition">
+                            ${ap.flag}
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h4 class="text-sm font-black text-slate-900 group-hover:text-blue-600 transition">${ap.city}</h4>
+                                <span class="text-xs text-slate-400 font-semibold">• ${ap.country}</span>
+                            </div>
+                            <p class="text-xs text-slate-500 font-medium truncate max-w-[280px] sm:max-w-md">${ap.name}</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 rounded-xl text-xs font-mono font-black bg-slate-100 text-slate-800 group-hover:bg-blue-600 group-hover:text-white transition shadow-sm">${ap.code}</span>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+        lucide.createIcons();
+    },
+
+    // --- PASSENGER & CLASS POPOVER ---
+    togglePassengerPopover() {
+        const popover = document.getElementById('passenger-popover');
+        if (popover) popover.classList.toggle('hidden');
+    },
+
+    closePassengerPopover() {
+        const popover = document.getElementById('passenger-popover');
+        if (popover) popover.classList.add('hidden');
+    },
+
+    changePassengerCount(type, delta) {
+        if (type === 'adults') {
+            store.search.adults = Math.max(1, Math.min(9, store.search.adults + delta));
+            document.getElementById('pass-adult-count').textContent = store.search.adults;
+        } else {
+            store.search.children = Math.max(0, Math.min(9, store.search.children + delta));
+            document.getElementById('pass-child-count').textContent = store.search.children;
+        }
+        this.updateSearchCardDisplays();
+    },
+
+    selectCabin(cabinName) {
+        store.search.cabin = cabinName;
+        document.querySelectorAll('.cabin-option-btn').forEach(btn => {
+            if (btn.dataset.cabin === cabinName) {
+                btn.className = 'cabin-option-btn py-2 px-3 rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition text-center';
+            } else {
+                btn.className = 'cabin-option-btn py-2 px-3 rounded-xl font-semibold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center';
+            }
+        });
+        this.updateSearchCardDisplays();
+    },
+
+    executeHeroSearch() {
+        this.navigate('flights', {
+            origin: store.search.origin,
+            destination: store.search.destination
         });
     },
 
@@ -660,10 +873,10 @@ const UI = {
         if (!destContainer) return;
 
         const highlights = [
-            { city: 'Singapore', code: 'SIN', country: 'Singapore', price: 185, image: '🇸🇬 Changi Global Hub', desc: 'World-renowned transit hub with lush gardens & luxury terminals.' },
-            { city: 'Tokyo', code: 'HND', country: 'Japan', price: 360, image: '🇯🇵 Haneda Airport', desc: 'Gateway to modern metropolis, cuisine, and neon skylines.' },
-            { city: 'Dubai', code: 'DXB', country: 'UAE', price: 495, image: '🇦🇪 Emirates Gateway', desc: 'Ultra-luxury shopping, futuristic architecture and global nexus.' },
-            { city: 'London', code: 'LHR', country: 'United Kingdom', price: 740, image: '🇬🇧 Heathrow Airport', desc: 'Historic European capital connecting transatlantic corridors.' }
+            { city: 'Singapore', code: 'SIN', country: 'Singapore', price: 185, desc: 'World-renowned transit hub with lush gardens & luxury terminals.' },
+            { city: 'Tokyo', code: 'HND', country: 'Japan', price: 360, desc: 'Gateway to modern metropolis, cuisine, and neon skylines.' },
+            { city: 'Dubai', code: 'DXB', country: 'UAE', price: 495, desc: 'Ultra-luxury shopping, futuristic architecture and global nexus.' },
+            { city: 'London', code: 'LHR', country: 'United Kingdom', price: 740, desc: 'Historic European capital connecting transatlantic corridors.' }
         ];
 
         destContainer.innerHTML = highlights.map(h => `
@@ -691,35 +904,28 @@ const UI = {
     },
 
     searchDestination(destCode) {
+        store.search.destination = destCode;
+        this.updateSearchCardDisplays();
         this.navigate('flights', { destination: destCode });
     },
 
     // --- FLIGHT SEARCH & FILTER ENGINE ---
     renderFlightSearch(filters = {}) {
-        // Set search form fields if provided
-        if (filters.origin) {
-            const originEl = document.getElementById('search-filter-origin');
-            if (originEl) originEl.value = filters.origin;
-        }
-        if (filters.destination) {
-            const destEl = document.getElementById('search-filter-destination');
-            if (destEl) destEl.value = filters.destination;
-        }
-
+        if (filters.origin !== undefined) store.search.origin = filters.origin;
+        if (filters.destination !== undefined) store.search.destination = filters.destination;
+        this.updateSearchCardDisplays();
         this.applyFlightFilters();
     },
 
     applyFlightFilters() {
-        const origin = document.getElementById('search-filter-origin')?.value || '';
-        const destination = document.getElementById('search-filter-destination')?.value || '';
+        const origin = store.search.origin || '';
+        const destination = store.search.destination || '';
         const maxPrice = Number(document.getElementById('search-filter-price')?.value || 2000);
         const stopsFilter = document.querySelector('input[name="filter-stops"]:checked')?.value || 'all';
         const sortMode = document.getElementById('search-sort-by')?.value || 'price-asc';
 
-        // Get selected airlines
         const selectedAirlines = Array.from(document.querySelectorAll('.airline-checkbox:checked')).map(cb => Number(cb.value));
 
-        // Filter flights
         let results = store.flights.filter(flight => {
             if (origin && flight.origin !== origin) return false;
             if (destination && flight.destination !== destination) return false;
@@ -730,20 +936,17 @@ const UI = {
             return true;
         });
 
-        // Sort results
         if (sortMode === 'price-asc') results.sort((a, b) => a.price - b.price);
         if (sortMode === 'price-desc') results.sort((a, b) => b.price - a.price);
         if (sortMode === 'duration') results.sort((a, b) => a.durationMinutes - b.durationMinutes);
         if (sortMode === 'departure') results.sort((a, b) => a.departureTime.localeCompare(b.departureTime));
 
-        // Update count badge
         const countBadge = document.getElementById('flight-results-count');
         if (countBadge) countBadge.textContent = `${results.length} Available Flights Found`;
 
         const priceValLabel = document.getElementById('price-range-val');
         if (priceValLabel) priceValLabel.textContent = `$${maxPrice}`;
 
-        // Render flight cards
         const container = document.getElementById('flight-results-container');
         if (!container) return;
 
@@ -843,11 +1046,10 @@ const UI = {
     },
 
     resetSearchFilters() {
-        const origin = document.getElementById('search-filter-origin');
-        const dest = document.getElementById('search-filter-destination');
+        store.search.origin = '';
+        store.search.destination = '';
+        this.updateSearchCardDisplays();
         const price = document.getElementById('search-filter-price');
-        if (origin) origin.value = '';
-        if (dest) dest.value = '';
         if (price) price.value = '2000';
         document.querySelectorAll('.airline-checkbox').forEach(cb => cb.checked = false);
         const directRadio = document.querySelector('input[name="filter-stops"][value="all"]');
@@ -895,7 +1097,6 @@ const UI = {
         const container = document.getElementById('seat-map-fuselage');
         if (!container) return;
 
-        // Seat configuration: 1-2 First, 3-5 Business, 6-18 Economy
         const rows = [
             { row: 1, type: 'first-class', priceAdd: store.activeBookingFlight.firstPrice - store.activeBookingFlight.price },
             { row: 2, type: 'first-class', priceAdd: store.activeBookingFlight.firstPrice - store.activeBookingFlight.price },
@@ -945,7 +1146,6 @@ const UI = {
 
             html += `<div class="flex items-center justify-between gap-1 py-0.5">`;
 
-            // Left 3 seats (A, B, C)
             html += `<div class="flex items-center gap-1.5">`;
             colsLeft.forEach(col => {
                 const seatCode = `${r.row}${col}`;
@@ -962,10 +1162,8 @@ const UI = {
             });
             html += `</div>`;
 
-            // Aisle with row number
             html += `<div class="w-6 text-center text-[10px] font-bold text-slate-300">${r.row}</div>`;
 
-            // Right 3 seats (D, E, F)
             html += `<div class="flex items-center gap-1.5">`;
             colsRight.forEach(col => {
                 const seatCode = `${r.row}${col}`;
@@ -1017,9 +1215,7 @@ const UI = {
         this.closeSeatModal();
         const checkoutModal = document.getElementById('checkout-modal');
         const flight = store.activeBookingFlight;
-        const airline = store.getAirline(flight.airlineId);
 
-        // Pre-fill user data
         document.getElementById('checkout-pass-name').value = store.currentUser.name || 'Alex Morgan';
         document.getElementById('checkout-pass-email').value = store.currentUser.email || 'alex.morgan@example.com';
 
@@ -1101,7 +1297,6 @@ const UI = {
         this.closeCheckoutModal();
         this.showToast(`🎉 Reservation confirmed! Ref: ${refNum}`, 'success');
 
-        // Automatically open Boarding Pass
         this.openBoardingPassModal(booking.id);
     },
 
@@ -1129,9 +1324,7 @@ const UI = {
 
         container.innerHTML = `
             <div class="boarding-pass-card grid grid-cols-1 md:grid-cols-4 border border-slate-200">
-                <!-- Left 3 cols: Main Boarding Pass -->
                 <div class="md:col-span-3 p-6 sm:p-8 space-y-6">
-                    <!-- Airline Top Header -->
                     <div class="flex items-center justify-between border-b border-slate-100 pb-4">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-xl ${airline.logoColor} text-white font-black flex items-center justify-center text-sm shadow-sm">
@@ -1148,7 +1341,6 @@ const UI = {
                         </div>
                     </div>
 
-                    <!-- Passenger & Flight Matrix -->
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
                         <div>
                             <span class="text-[10px] uppercase font-bold text-slate-400 block">Passenger</span>
@@ -1168,7 +1360,6 @@ const UI = {
                         </div>
                     </div>
 
-                    <!-- Origin / Destination Route Graphic -->
                     <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
                         <div>
                             <span class="text-3xl font-black text-slate-900">${flight.origin}</span>
@@ -1187,7 +1378,6 @@ const UI = {
                         </div>
                     </div>
 
-                    <!-- Gate, Terminal, Seat, Boarding Time -->
                     <div class="grid grid-cols-4 gap-3 bg-blue-600 text-white rounded-2xl p-4 text-center shadow-lg shadow-blue-600/20">
                         <div>
                             <span class="text-[9px] uppercase font-bold opacity-80 block">Gate</span>
@@ -1207,14 +1397,12 @@ const UI = {
                         </div>
                     </div>
 
-                    <!-- Simulated Barcode -->
                     <div class="pt-2">
                         <div class="barcode rounded-lg opacity-85"></div>
                         <div class="text-center font-mono text-[9px] text-slate-400 tracking-widest mt-1">ETK//${booking.bookingReference}//${flight.flightNumber}//SEAT${booking.seatNumber}</div>
                     </div>
                 </div>
 
-                <!-- Right 1 col: Stub with QR Code -->
                 <div class="boarding-pass-stub md:col-span-1 p-6 bg-slate-50 flex flex-col justify-between items-center text-center space-y-4">
                     <div>
                         <span class="text-[10px] uppercase font-extrabold text-slate-400 tracking-wider">Flight Stub</span>
@@ -1222,7 +1410,6 @@ const UI = {
                         <div class="text-xs font-bold text-blue-600 mt-0.5">${flight.flightNumber}</div>
                     </div>
 
-                    <!-- QR Code Display -->
                     <div class="p-3 bg-white rounded-2xl border border-slate-200 shadow-sm">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=SkyBook-Ticket-${booking.bookingReference}-${booking.seatNumber}" alt="Boarding Pass QR" class="w-24 h-24 rounded-lg mx-auto" />
                     </div>
@@ -1369,7 +1556,6 @@ const UI = {
         document.getElementById('dash-miles-earned').textContent = (user.miles || 42000) + totalSpent * 10;
         document.getElementById('dash-total-spent').textContent = `$${totalSpent}`;
 
-        // Render upcoming flights
         const upcomingContainer = document.getElementById('dash-upcoming-flights');
         const activeBookings = store.bookings.filter(b => b.status === 'Confirmed');
 
@@ -1616,14 +1802,6 @@ const UI = {
     },
 
     initEventListeners() {
-        // Hero quick search form
-        document.getElementById('hero-search-form')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const origin = document.getElementById('hero-origin').value;
-            const dest = document.getElementById('hero-destination').value;
-            this.navigate('flights', { origin, destination: dest });
-        });
-
         // Price filter input
         document.getElementById('search-filter-price')?.addEventListener('input', (e) => {
             document.getElementById('price-range-val').textContent = `$${e.target.value}`;
@@ -1635,12 +1813,15 @@ const UI = {
             r.addEventListener('change', () => this.applyFlightFilters());
         });
         document.getElementById('search-sort-by')?.addEventListener('change', () => this.applyFlightFilters());
-        document.getElementById('search-filter-origin')?.addEventListener('change', () => this.applyFlightFilters());
-        document.getElementById('search-filter-destination')?.addEventListener('change', () => this.applyFlightFilters());
 
         // Mobile drawer toggle
         document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
             document.getElementById('mobile-menu')?.classList.toggle('hidden');
+        });
+
+        // Search airport input typing listener
+        document.getElementById('airport-search-input')?.addEventListener('input', (e) => {
+            this.renderAirportPickerList(e.target.value);
         });
     }
 };
