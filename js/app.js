@@ -873,35 +873,139 @@ const UI = {
         if (!destContainer) return;
 
         const highlights = [
-            { city: 'Singapore', code: 'SIN', country: 'Singapore', price: 185, desc: 'World-renowned transit hub with lush gardens & luxury terminals.' },
-            { city: 'Tokyo', code: 'HND', country: 'Japan', price: 360, desc: 'Gateway to modern metropolis, cuisine, and neon skylines.' },
-            { city: 'Dubai', code: 'DXB', country: 'UAE', price: 495, desc: 'Ultra-luxury shopping, futuristic architecture and global nexus.' },
-            { city: 'London', code: 'LHR', country: 'United Kingdom', price: 740, desc: 'Historic European capital connecting transatlantic corridors.' }
+            {
+                city: 'New York City',
+                code: 'JFK',
+                country: 'United States',
+                flag: '🇺🇸',
+                price: 1180,
+                image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80',
+                tag: 'Popular',
+                desc: 'Iconic Manhattan skyline, Broadway lights, Central Park, and global financial pulse.'
+            },
+            {
+                city: 'Tokyo',
+                code: 'HND',
+                country: 'Japan',
+                flag: '🇯🇵',
+                price: 360,
+                image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80',
+                tag: 'Trending',
+                desc: 'Futuristic neon metropolis, rich ancient traditions, and world-class culinary culture.'
+            },
+            {
+                city: 'Dubai',
+                code: 'DXB',
+                country: 'United Arab Emirates',
+                flag: '🇦🇪',
+                price: 495,
+                image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
+                tag: 'Luxury Hub',
+                desc: 'Architectural marvels, Burj Khalifa, desert adventures, and premier luxury shopping.'
+            },
+            {
+                city: 'Singapore',
+                code: 'SIN',
+                country: 'Singapore',
+                flag: '🇸🇬',
+                price: 185,
+                image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=800&q=80',
+                tag: 'Top Transit',
+                desc: 'Garden city with iconic Marina Bay, futuristic Supertree Grove, and Jewel Changi.'
+            },
+            {
+                city: 'Paris',
+                code: 'CDG',
+                country: 'France',
+                flag: '🇫🇷',
+                price: 680,
+                image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80',
+                tag: 'Romantic',
+                desc: 'Eiffel Tower, world-famous museums, Haute Couture fashion, and charming Parisian cafes.'
+            },
+            {
+                city: 'London',
+                code: 'LHR',
+                country: 'United Kingdom',
+                flag: '🇬🇧',
+                price: 740,
+                image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80',
+                tag: 'Heritage',
+                desc: 'Historic Big Ben, Tower Bridge, West End theaters, and prestigious aviation corridor.'
+            },
+            {
+                city: 'Sydney',
+                code: 'SYD',
+                country: 'Australia',
+                flag: '🇦🇺',
+                price: 890,
+                image: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80',
+                tag: 'Scenic Coast',
+                desc: 'World-famous Sydney Opera House, Harbour Bridge, Bondi Beach, and vibrant ocean life.'
+            },
+            {
+                city: 'Bangkok',
+                code: 'BKK',
+                country: 'Thailand',
+                flag: '🇹🇭',
+                price: 95,
+                image: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80',
+                tag: 'Best Value',
+                desc: 'Vibrant street markets, golden riverside temples, grand hospitality, and culinary delights.'
+            }
         ];
 
         destContainer.innerHTML = highlights.map(h => `
-            <div class="group relative rounded-3xl overflow-hidden bg-white border border-slate-200/80 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
-                <div class="p-6 pb-4">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="px-3 py-1 rounded-full text-xs font-black bg-blue-50 text-blue-600 border border-blue-100">${h.code}</span>
-                        <div class="text-right">
-                            <span class="text-xs font-bold text-slate-400 block">From</span>
-                            <span class="text-2xl font-black text-slate-900">$${h.price}</span>
-                        </div>
+            <div class="group relative rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between">
+                
+                <!-- Destination Photo Header with Gradient Overlay -->
+                <div class="relative h-56 overflow-hidden bg-slate-800">
+                    <img src="${h.image}" alt="${h.city}" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 brightness-95 group-hover:brightness-105" loading="lazy" />
+                    
+                    <!-- Gradient Scrim for Text Readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent"></div>
+                    
+                    <!-- Top Badges -->
+                    <div class="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+                        <span class="px-3 py-1 rounded-full text-xs font-black bg-white/90 backdrop-blur text-slate-900 shadow-md flex items-center gap-1.5">
+                            <span>${h.flag}</span>
+                            <span class="font-mono text-blue-600">${h.code}</span>
+                        </span>
+                        <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-blue-600/90 backdrop-blur text-white shadow-md">
+                            ${h.tag}
+                        </span>
                     </div>
-                    <h3 class="text-xl font-black text-slate-900 group-hover:text-blue-600 transition-colors">${h.city}</h3>
-                    <p class="text-xs text-slate-500 font-semibold mb-3">${h.country}</p>
-                    <p class="text-xs text-slate-600 leading-relaxed">${h.desc}</p>
+
+                    <!-- Bottom City Title Over Image -->
+                    <div class="absolute bottom-4 left-4 right-4 z-10">
+                        <span class="text-xs font-bold text-sky-300 block">${h.country}</span>
+                        <h3 class="text-2xl font-black text-white tracking-tight leading-tight">${h.city}</h3>
+                    </div>
                 </div>
-                <div class="p-6 pt-0">
-                    <button onclick="UI.searchDestination('${h.code}')" class="w-full py-2.5 rounded-xl bg-slate-100 group-hover:bg-blue-600 group-hover:text-white text-slate-700 font-bold text-xs transition-all flex items-center justify-center gap-2">
-                        <span>Find Flights to ${h.city}</span>
-                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                    </button>
+
+                <!-- Card Content & Action -->
+                <div class="p-5 flex flex-col justify-between flex-1 space-y-4">
+                    <p class="text-xs text-slate-600 leading-relaxed font-medium line-clamp-2">${h.desc}</p>
+                    
+                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Fares From</span>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-2xl font-black text-slate-900">$${h.price}</span>
+                                <span class="text-[10px] text-slate-400 font-semibold">/ adult</span>
+                            </div>
+                        </div>
+
+                        <button onclick="UI.searchDestination('${h.code}')" class="py-2.5 px-4 rounded-xl bg-blue-50 hover:bg-blue-600 text-blue-600 hover:text-white font-bold text-xs transition-all duration-300 flex items-center gap-1.5 shadow-sm group-hover:bg-blue-600 group-hover:text-white">
+                            <span>Book Flight</span>
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         `).join('');
     },
+
 
     searchDestination(destCode) {
         store.search.destination = destCode;
