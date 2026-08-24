@@ -37,6 +37,9 @@
         }
     </script>
 
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!-- Lucide Icons & Chart.js -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -719,9 +722,14 @@
     <div id="seat-selector-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto modal-backdrop">
         <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 p-6 sm:p-8 space-y-6 modal-content">
             <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                <div>
-                    <span class="text-xs font-black uppercase tracking-wider text-blue-600">Aircraft Seat Layout</span>
-                    <h3 class="text-xl font-black text-slate-900 mt-0.5">Select Your Cabin Seat</h3>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-sm border border-blue-100">
+                        <i class="fa-solid fa-chair text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-black uppercase tracking-wider text-blue-600">Aircraft Seat Layout</span>
+                        <h3 class="text-xl font-black text-slate-900 mt-0.5">Select Your Cabin Seat</h3>
+                    </div>
                 </div>
                 <button onclick="UI.closeSeatModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
                     <i data-lucide="x" class="w-5 h-5"></i>
