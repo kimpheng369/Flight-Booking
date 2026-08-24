@@ -210,9 +210,9 @@
                                     <div>
                                         <span class="text-xs font-black uppercase tracking-wider text-slate-400 block mb-2">Cabin Class</span>
                                         <div class="grid grid-cols-3 gap-1.5">
-                                            <button onclick="UI.selectCabin('Economy')" data-cabin="Economy" class="cabin-option-btn py-2 px-2 rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition text-center">Economy</button>
-                                            <button onclick="UI.selectCabin('Business')" data-cabin="Business" class="cabin-option-btn py-2 px-2 rounded-xl font-semibold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center">Business</button>
-                                            <button onclick="UI.selectCabin('First')" data-cabin="First" class="cabin-option-btn py-2 px-2 rounded-xl font-semibold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center">First</button>
+                                            <button onclick="UI.selectCabin('Economy')" data-cabin="Economy" class="cabin-option-btn py-2 px-2 rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition text-center flex items-center justify-center gap-1.5"><i class="fa-solid fa-plane text-[10px]"></i><span>Economy</span></button>
+                                            <button onclick="UI.selectCabin('Business')" data-cabin="Business" class="cabin-option-btn py-2 px-2 rounded-xl font-semibold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center flex items-center justify-center gap-1.5"><i class="fa-solid fa-gem text-[10px]"></i><span>Business</span></button>
+                                            <button onclick="UI.selectCabin('First')" data-cabin="First" class="cabin-option-btn py-2 px-2 rounded-xl font-semibold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center flex items-center justify-center gap-1.5"><i class="fa-solid fa-star text-[10px]"></i><span>First</span></button>
                                         </div>
                                     </div>
 
@@ -741,10 +741,10 @@
 
             <!-- Seat Legend -->
             <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-bold text-slate-600 border-b border-slate-100 pb-3">
-                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-f1f5f9 border border-slate-300"></span> Available ($0)</div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-slate-100 border border-slate-300 flex items-center justify-center text-[8px]"><i class="fa-solid fa-plane text-slate-500"></i></span> Available ($0)</div>
                 <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-blue-600"></span> Selected</div>
-                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-amber-100 border border-amber-300"></span> First Class Suite</div>
-                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-indigo-100 border border-indigo-300"></span> Business Class</div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-amber-100 border border-amber-300 flex items-center justify-center text-[8px]"><i class="fa-solid fa-star text-amber-500"></i></span> First Class Suite</div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-indigo-100 border border-indigo-300 flex items-center justify-center text-[8px]"><i class="fa-solid fa-gem text-indigo-500"></i></span> Business Class</div>
                 <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-slate-200 opacity-60"></span> Occupied</div>
             </div>
 

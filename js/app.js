@@ -1241,11 +1241,11 @@ const UI = {
             const cabinName = isFirst ? 'First Class' : (isBiz ? 'Business Class' : 'Economy');
 
             if (r.row === 1) {
-                html += `<div class="text-center py-1 bg-amber-50 text-amber-800 text-[10px] font-bold rounded-lg uppercase tracking-wider">🌟 First Class Suites ($${store.activeBookingFlight.firstPrice})</div>`;
+                html += `<div class="text-center py-1 bg-amber-50 text-amber-800 text-[10px] font-bold rounded-lg uppercase tracking-wider flex items-center justify-center gap-1.5"><i class="fa-solid fa-star text-amber-500"></i> First Class Suites ($${store.activeBookingFlight.firstPrice})</div>`;
             } else if (r.row === 3) {
-                html += `<div class="text-center py-1 bg-indigo-50 text-indigo-800 text-[10px] font-bold rounded-lg uppercase tracking-wider mt-2">💎 Business Class Cabin ($${store.activeBookingFlight.businessPrice})</div>`;
+                html += `<div class="text-center py-1 bg-indigo-50 text-indigo-800 text-[10px] font-bold rounded-lg uppercase tracking-wider mt-2 flex items-center justify-center gap-1.5"><i class="fa-solid fa-gem text-indigo-500"></i> Business Class Cabin ($${store.activeBookingFlight.businessPrice})</div>`;
             } else if (r.row === 6) {
-                html += `<div class="text-center py-1 bg-slate-100 text-slate-700 text-[10px] font-bold rounded-lg uppercase tracking-wider mt-2">✈️ Main Economy Cabin ($${store.activeBookingFlight.price})</div>`;
+                html += `<div class="text-center py-1 bg-slate-100 text-slate-700 text-[10px] font-bold rounded-lg uppercase tracking-wider mt-2 flex items-center justify-center gap-1.5"><i class="fa-solid fa-plane text-slate-600"></i> Main Economy Cabin ($${store.activeBookingFlight.price})</div>`;
             }
 
             html += `<div class="flex items-center justify-between gap-1 py-0.5">`;
