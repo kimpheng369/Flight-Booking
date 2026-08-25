@@ -2,7 +2,7 @@
 <html lang="en" class="h-full bg-slate-50">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
     <title>SkyBook — Modern Flight Reservation & Aviation Platform</title>
     <meta name="description" content="Search, compare, and book international flights with interactive seat selection, instant boarding passes, and live flight administration.">
 
@@ -47,45 +47,45 @@
     <!-- Custom CSS Styles -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="font-sans antialiased text-slate-800 bg-slate-50 min-h-full flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+<body class="font-sans antialiased text-slate-800 bg-slate-50 min-h-full flex flex-col justify-between selection:bg-blue-600 selection:text-white overflow-x-hidden">
 
     <!-- Top Navigation Bar -->
     <nav class="bg-slate-900/95 backdrop-blur-xl border-b border-slate-800/80 sticky top-0 z-50 transition-all shadow-xl shadow-slate-950/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 sm:h-20 items-center">
                 <!-- Brand & Logo -->
-                <div class="flex items-center gap-8">
-                    <button onclick="UI.navigate('home')" class="flex items-center gap-3 group text-left">
-                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 via-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30 ring-2 ring-sky-400/30 group-hover:scale-105 transition-all duration-300">
-                            <i data-lucide="plane" class="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-500"></i>
+                <div class="flex items-center gap-4 lg:gap-8">
+                    <button onclick="UI.navigate('home')" class="flex items-center gap-2.5 sm:gap-3 group text-left">
+                        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-blue-600 via-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30 ring-2 ring-sky-400/30 group-hover:scale-105 transition-all duration-300">
+                            <i data-lucide="plane" class="w-5 h-5 sm:w-6 sm:h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-500"></i>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-2xl font-black tracking-tight text-white leading-none">Sky<span class="bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Book</span></span>
-                            <div class="flex items-center gap-2 mt-1">
-                                <span class="text-[9px] uppercase font-extrabold tracking-widest text-slate-400">Flight System</span>
-                                <span id="active-role-indicator" class="px-2 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider bg-blue-500/20 text-sky-300 border border-sky-500/40">CUSTOMER</span>
+                            <span class="text-xl sm:text-2xl font-black tracking-tight text-white leading-none">Sky<span class="bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Book</span></span>
+                            <div class="flex items-center gap-1.5 sm:gap-2 mt-0.5 sm:mt-1">
+                                <span class="text-[8px] sm:text-[9px] uppercase font-extrabold tracking-widest text-slate-400">Flight System</span>
+                                <span id="active-role-indicator" class="px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold tracking-wider bg-blue-500/20 text-sky-300 border border-sky-500/40">CUSTOMER</span>
                             </div>
                         </div>
                     </button>
 
-                    <!-- Nav Links -->
+                    <!-- Desktop Nav Links -->
                     <div class="hidden md:flex items-center gap-1.5 text-sm font-semibold">
-                        <button onclick="UI.navigate('home')" data-view="home" class="nav-link px-4 py-2 rounded-xl transition-all flex items-center gap-2 bg-blue-600/20 text-sky-400 border border-sky-500/30">
+                        <button onclick="UI.navigate('home')" data-view="home" class="nav-link px-3.5 py-2 rounded-xl transition-all flex items-center gap-2 bg-blue-600/20 text-sky-400 border border-sky-500/30">
                             <i data-lucide="compass" class="w-4 h-4"></i>
                             <span>Home</span>
                         </button>
 
-                        <button onclick="UI.navigate('flights')" data-view="flights" class="nav-link px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800/60">
+                        <button onclick="UI.navigate('flights')" data-view="flights" class="nav-link px-3.5 py-2 rounded-xl transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800/60">
                             <i data-lucide="search" class="w-4 h-4"></i>
                             <span>Search Flights</span>
                         </button>
 
-                        <button onclick="UI.navigate('bookings')" data-view="bookings" class="nav-link px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800/60">
+                        <button onclick="UI.navigate('bookings')" data-view="bookings" class="nav-link px-3.5 py-2 rounded-xl transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800/60">
                             <i data-lucide="ticket" class="w-4 h-4"></i>
                             <span>My Bookings</span>
                         </button>
 
-                        <button onclick="UI.navigate('dashboard')" data-view="dashboard" class="nav-link px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800/60">
+                        <button onclick="UI.navigate('dashboard')" data-view="dashboard" class="nav-link px-3.5 py-2 rounded-xl transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800/60">
                             <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
                             <span>Dashboard</span>
                         </button>
@@ -102,24 +102,45 @@
                     <div id="nav-user-container"></div>
                 </div>
 
-                <!-- Mobile Hamburger -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" type="button" class="p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
+                <!-- Mobile Header Right Actions: Switcher & Hamburger -->
+                <div class="md:hidden flex items-center gap-2">
+                    <button onclick="UI.toggleRoleMenu()" class="p-2 rounded-xl text-sky-400 bg-slate-800 border border-slate-700 text-xs font-bold flex items-center gap-1" title="Switch Demo Role">
+                        <i data-lucide="user-cog" class="w-4 h-4"></i>
+                    </button>
+                    <button id="mobile-menu-btn" type="button" class="p-2 rounded-xl text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700" aria-label="Toggle Menu">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
                     </button>
                 </div>
             </div>
         </div>
 
         <!-- Mobile Drawer Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-slate-900 px-4 pt-3 pb-6 space-y-3">
-            <button onclick="UI.navigate('home')" class="w-full text-left block px-3 py-2.5 rounded-lg text-base font-semibold text-slate-200 hover:bg-slate-800">Home</button>
-            <button onclick="UI.navigate('flights')" class="w-full text-left block px-3 py-2.5 rounded-lg text-base font-semibold text-slate-200 hover:bg-slate-800">Search Flights</button>
-            <button onclick="UI.navigate('bookings')" class="w-full text-left block px-3 py-2.5 rounded-lg text-base font-semibold text-slate-200 hover:bg-slate-800">My Bookings</button>
-            <button onclick="UI.navigate('dashboard')" class="w-full text-left block px-3 py-2.5 rounded-lg text-base font-semibold text-slate-200 hover:bg-slate-800">Dashboard</button>
-            <button onclick="UI.navigate('admin')" class="w-full text-left block px-3 py-2.5 rounded-lg text-base font-semibold text-amber-400 bg-amber-500/10">Admin Panel</button>
-            <div class="pt-3 border-t border-slate-800 flex gap-2">
-                <button onclick="UI.toggleRoleMenu()" class="w-full py-2.5 bg-blue-600 text-white rounded-xl text-xs font-bold">Switch Demo Account</button>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-slate-900 px-4 pt-3 pb-6 space-y-2">
+            <button onclick="UI.navigate('home')" class="w-full text-left flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800">
+                <i data-lucide="compass" class="w-4 h-4 text-sky-400"></i>
+                <span>Home</span>
+            </button>
+            <button onclick="UI.navigate('flights')" class="w-full text-left flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800">
+                <i data-lucide="search" class="w-4 h-4 text-sky-400"></i>
+                <span>Search Flights</span>
+            </button>
+            <button onclick="UI.navigate('bookings')" class="w-full text-left flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800">
+                <i data-lucide="ticket" class="w-4 h-4 text-sky-400"></i>
+                <span>My Bookings</span>
+            </button>
+            <button onclick="UI.navigate('dashboard')" class="w-full text-left flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800">
+                <i data-lucide="layout-dashboard" class="w-4 h-4 text-sky-400"></i>
+                <span>Customer Dashboard</span>
+            </button>
+            <button id="mobile-admin-link" onclick="UI.navigate('admin')" class="w-full text-left flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-semibold text-amber-400 bg-amber-500/10">
+                <i data-lucide="shield-check" class="w-4 h-4 text-amber-400"></i>
+                <span>Admin Management Panel</span>
+            </button>
+            <div class="pt-2 border-t border-slate-800">
+                <button onclick="UI.toggleRoleMenu()" class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-sky-600 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-md">
+                    <i data-lucide="user-cog" class="w-4 h-4"></i>
+                    <span>Switch Demo Role (Admin / Customer)</span>
+                </button>
             </div>
         </div>
     </nav>
@@ -132,51 +153,53 @@
         <!-- ========================================== -->
         <div id="view-home" class="view-section">
             <!-- Hero Section -->
-            <div class="relative hero-gradient overflow-hidden pt-12 pb-24 lg:pt-20 lg:pb-32">
+            <div class="relative hero-gradient overflow-hidden pt-8 pb-16 sm:pt-12 sm:pb-24 lg:pt-20 lg:pb-32">
                 <div class="absolute inset-0 z-0 opacity-30 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-600 via-sky-900 to-slate-950"></div>
                 <div class="absolute -top-40 -right-40 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
 
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
-                        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-xs font-semibold uppercase tracking-wider">
-                            <i data-lucide="sparkles" class="w-4 h-4"></i> Zero-Database Live Portfolio Demo
+                <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-8 sm:mb-12">
+                        <span class="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-[11px] sm:text-xs font-semibold uppercase tracking-wider">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Zero-Database Live Portfolio Demo
                         </span>
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none">
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight sm:leading-none">
                             Fly Smarter with <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-300">SkyBook</span>
                         </h1>
-                        <p class="text-base sm:text-lg text-slate-300 font-normal">
+                        <p class="text-xs sm:text-base lg:text-lg text-slate-300 font-normal px-2">
                             Search international flight routes, select airplane cabin seats in real-time, generate instant boarding passes, and manage airline bookings effortlessly.
                         </p>
                     </div>
 
                     <!-- LUXURY MODERN FLIGHT SEARCH WIDGET -->
-                    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl shadow-slate-950/40 border border-slate-100 max-w-5xl mx-auto space-y-6">
+                    <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl shadow-slate-950/40 border border-slate-100 max-w-5xl mx-auto space-y-4 sm:space-y-6">
                         
                         <!-- Top Controls: Trip Type & Passenger / Class Selector -->
-                        <div class="flex flex-wrap items-center justify-between gap-4 pb-2 border-b border-slate-100">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-slate-100">
                             <!-- Trip Type Buttons -->
-                            <div class="flex items-center gap-1.5 p-1 bg-slate-100 rounded-2xl">
-                                <button onclick="UI.setTripType('round-trip')" data-type="round-trip" class="trip-tab-btn px-4 py-1.5 rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition">
+                            <div class="flex items-center gap-1 p-1 bg-slate-100 rounded-xl sm:rounded-2xl overflow-x-auto no-scrollbar">
+                                <button onclick="UI.setTripType('round-trip')" data-type="round-trip" class="trip-tab-btn flex-1 sm:flex-initial px-3 sm:px-4 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition whitespace-nowrap text-center">
                                     Round Trip
                                 </button>
-                                <button onclick="UI.setTripType('one-way')" data-type="one-way" class="trip-tab-btn px-4 py-1.5 rounded-xl font-semibold text-xs text-slate-600 hover:text-slate-900 transition">
+                                <button onclick="UI.setTripType('one-way')" data-type="one-way" class="trip-tab-btn flex-1 sm:flex-initial px-3 sm:px-4 py-1.5 rounded-lg sm:rounded-xl font-semibold text-xs text-slate-600 hover:text-slate-900 transition whitespace-nowrap text-center">
                                     One Way
                                 </button>
-                                <button onclick="UI.setTripType('multi-city')" data-type="multi-city" class="trip-tab-btn px-4 py-1.5 rounded-xl font-semibold text-xs text-slate-600 hover:text-slate-900 transition">
+                                <button onclick="UI.setTripType('multi-city')" data-type="multi-city" class="trip-tab-btn flex-1 sm:flex-initial px-3 sm:px-4 py-1.5 rounded-lg sm:rounded-xl font-semibold text-xs text-slate-600 hover:text-slate-900 transition whitespace-nowrap text-center">
                                     Multi-City
                                 </button>
                             </div>
 
                             <!-- Passenger & Cabin Class Trigger Button -->
-                            <div class="relative">
-                                <button onclick="UI.togglePassengerPopover()" class="px-4 py-2 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-xs font-bold text-slate-800 flex items-center gap-2 transition shadow-sm">
-                                    <i data-lucide="users" class="w-4 h-4 text-blue-600"></i>
-                                    <span id="hero-passenger-summary">1 Passenger, Economy</span>
-                                    <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400"></i>
+                            <div class="relative w-full sm:w-auto">
+                                <button onclick="UI.togglePassengerPopover()" class="w-full sm:w-auto px-3.5 py-2 rounded-xl sm:rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-xs font-bold text-slate-800 flex items-center justify-between sm:justify-start gap-2 transition shadow-sm">
+                                    <div class="flex items-center gap-2 truncate">
+                                        <i data-lucide="users" class="w-4 h-4 text-blue-600 shrink-0"></i>
+                                        <span id="hero-passenger-summary" class="truncate">1 Passenger, Economy</span>
+                                    </div>
+                                    <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 shrink-0"></i>
                                 </button>
 
                                 <!-- Passenger & Cabin Popover Menu -->
-                                <div id="passenger-popover" class="hidden absolute right-0 top-full mt-2 w-72 bg-white rounded-3xl p-5 shadow-2xl border border-slate-200 z-50 space-y-4">
+                                <div id="passenger-popover" class="hidden absolute left-0 sm:left-auto right-0 top-full mt-2 w-full sm:w-72 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-2xl border border-slate-200 z-50 space-y-4">
                                     <div>
                                         <span class="text-xs font-black uppercase tracking-wider text-slate-400 block mb-3">Travelers</span>
                                         
@@ -210,9 +233,9 @@
                                     <div>
                                         <span class="text-xs font-black uppercase tracking-wider text-slate-400 block mb-2">Cabin Class</span>
                                         <div class="grid grid-cols-3 gap-1.5">
-                                            <button onclick="UI.selectCabin('Economy')" data-cabin="Economy" class="cabin-option-btn py-2 px-2 rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition text-center flex items-center justify-center gap-1.5"><i class="fa-solid fa-plane text-[10px]"></i><span>Economy</span></button>
-                                            <button onclick="UI.selectCabin('Business')" data-cabin="Business" class="cabin-option-btn py-2 px-2 rounded-xl font-semibold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center flex items-center justify-center gap-1.5"><i class="fa-solid fa-gem text-[10px]"></i><span>Business</span></button>
-                                            <button onclick="UI.selectCabin('First')" data-cabin="First" class="cabin-option-btn py-2 px-2 rounded-xl font-semibold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center flex items-center justify-center gap-1.5"><i class="fa-solid fa-star text-[10px]"></i><span>First</span></button>
+                                            <button onclick="UI.selectCabin('Economy')" data-cabin="Economy" class="cabin-option-btn py-2 px-1.5 rounded-xl font-bold text-[11px] bg-blue-600 text-white shadow-sm transition text-center flex items-center justify-center gap-1"><i class="fa-solid fa-plane text-[9px]"></i><span>Economy</span></button>
+                                            <button onclick="UI.selectCabin('Business')" data-cabin="Business" class="cabin-option-btn py-2 px-1.5 rounded-xl font-semibold text-[11px] bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center flex items-center justify-center gap-1"><i class="fa-solid fa-gem text-[9px]"></i><span>Business</span></button>
+                                            <button onclick="UI.selectCabin('First')" data-cabin="First" class="cabin-option-btn py-2 px-1.5 rounded-xl font-semibold text-[11px] bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center flex items-center justify-center gap-1"><i class="fa-solid fa-star text-[9px]"></i><span>First</span></button>
                                         </div>
                                     </div>
 
@@ -222,64 +245,64 @@
                         </div>
 
                         <!-- MAIN ROUTE PICKER ROW -->
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 relative items-center">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2.5 sm:gap-3 relative items-center">
                             
                             <!-- From Origin Trigger Card -->
                             <div class="lg:col-span-5 relative">
-                                <div onclick="UI.openAirportPicker('hero-origin')" class="p-4 rounded-2xl bg-slate-50 hover:bg-blue-50/60 border border-slate-200 hover:border-blue-300 transition-all cursor-pointer group space-y-1">
+                                <div onclick="UI.openAirportPicker('hero-origin')" class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 hover:bg-blue-50/60 border border-slate-200 hover:border-blue-300 transition-all cursor-pointer group space-y-1">
                                     <div class="flex items-center justify-between">
-                                        <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-blue-600 transition">Departure City</span>
+                                        <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-blue-600 transition">Departure Hub</span>
                                         <span id="hero-origin-code" class="px-2 py-0.5 rounded-lg text-xs font-mono font-black bg-blue-100 text-blue-700">PNH</span>
                                     </div>
-                                    <div id="hero-origin-city" class="text-xl font-black text-slate-900 group-hover:text-blue-600 transition truncate">Phnom Penh</div>
+                                    <div id="hero-origin-city" class="text-lg sm:text-xl font-black text-slate-900 group-hover:text-blue-600 transition truncate">Phnom Penh</div>
                                     <div id="hero-origin-name" class="text-xs text-slate-500 font-medium truncate">🇰🇭 Techo International Airport</div>
                                 </div>
                             </div>
 
                             <!-- Swap Route Button (Centered) -->
-                            <div class="lg:col-span-2 flex justify-center -my-2 lg:my-0 z-10">
-                                <button type="button" onclick="UI.swapAirports()" class="swap-btn w-11 h-11 rounded-2xl bg-white border-2 border-slate-200 hover:border-blue-500 text-slate-700 hover:text-blue-600 shadow-md flex items-center justify-center transition" title="Swap Route">
-                                    <i data-lucide="arrow-left-right" class="w-5 h-5"></i>
+                            <div class="lg:col-span-2 flex justify-center -my-1 sm:-my-2 lg:my-0 z-10">
+                                <button type="button" onclick="UI.swapAirports()" class="swap-btn w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-white border-2 border-slate-200 hover:border-blue-500 text-slate-700 hover:text-blue-600 shadow-md flex items-center justify-center transition" title="Swap Route">
+                                    <i data-lucide="arrow-left-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                                 </button>
                             </div>
 
                             <!-- To Destination Trigger Card -->
                             <div class="lg:col-span-5 relative">
-                                <div onclick="UI.openAirportPicker('hero-dest')" class="p-4 rounded-2xl bg-slate-50 hover:bg-blue-50/60 border border-slate-200 hover:border-blue-300 transition-all cursor-pointer group space-y-1">
+                                <div onclick="UI.openAirportPicker('hero-dest')" class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 hover:bg-blue-50/60 border border-slate-200 hover:border-blue-300 transition-all cursor-pointer group space-y-1">
                                     <div class="flex items-center justify-between">
-                                        <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-blue-600 transition">Destination City</span>
+                                        <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-blue-600 transition">Destination Hub</span>
                                         <span id="hero-dest-code" class="px-2 py-0.5 rounded-lg text-xs font-mono font-black bg-sky-100 text-sky-700">SIN</span>
                                     </div>
-                                    <div id="hero-dest-city" class="text-xl font-black text-slate-900 group-hover:text-blue-600 transition truncate">Singapore</div>
+                                    <div id="hero-dest-city" class="text-lg sm:text-xl font-black text-slate-900 group-hover:text-blue-600 transition truncate">Singapore</div>
                                     <div id="hero-dest-name" class="text-xs text-slate-500 font-medium truncate">🇸🇬 Singapore Changi Airport</div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- DATE & SEARCH CTA ROW -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 items-center">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3 items-center">
                             <!-- Departure Date Card -->
-                            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                            <div class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
                                 <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block">Departure Date</span>
                                 <div class="flex items-center gap-2">
                                     <i data-lucide="calendar" class="w-4 h-4 text-blue-600 shrink-0"></i>
-                                    <input type="date" id="hero-date" value="2026-08-25" class="bg-transparent border-0 font-bold text-sm text-slate-800 focus:outline-none w-full cursor-pointer">
+                                    <input type="date" id="hero-date" value="2026-08-25" class="bg-transparent border-0 font-bold text-xs sm:text-sm text-slate-800 focus:outline-none w-full cursor-pointer">
                                 </div>
                             </div>
 
                             <!-- Return Date Card (Visible for Round-Trip) -->
-                            <div id="hero-return-field" class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                            <div id="hero-return-field" class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
                                 <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block">Return Date</span>
                                 <div class="flex items-center gap-2">
                                     <i data-lucide="calendar-days" class="w-4 h-4 text-sky-600 shrink-0"></i>
-                                    <input type="date" id="hero-return-date" value="2026-08-30" class="bg-transparent border-0 font-bold text-sm text-slate-800 focus:outline-none w-full cursor-pointer">
+                                    <input type="date" id="hero-return-date" value="2026-08-30" class="bg-transparent border-0 font-bold text-xs sm:text-sm text-slate-800 focus:outline-none w-full cursor-pointer">
                                 </div>
                             </div>
 
                             <!-- Search Action Button -->
                             <div class="sm:col-span-2 lg:col-span-1">
-                                <button onclick="UI.executeHeroSearch()" class="w-full py-4 bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 hover:from-blue-500 hover:to-sky-500 text-white font-black text-sm rounded-2xl shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
-                                    <i data-lucide="search" class="w-5 h-5"></i>
+                                <button onclick="UI.executeHeroSearch()" class="w-full py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 hover:from-blue-500 hover:to-sky-500 text-white font-black text-xs sm:text-sm rounded-xl sm:rounded-2xl shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+                                    <i data-lucide="search" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                                     <span>Search Available Flights</span>
                                 </button>
                             </div>
@@ -293,72 +316,72 @@
             </div>
 
             <!-- Popular Destinations Section -->
-            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <section class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-12 sm:py-20">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-8 sm:mb-12">
                     <div>
                         <span class="text-xs font-black uppercase tracking-widest text-blue-600">Featured Corridors</span>
-                        <h2 class="text-3xl font-black text-slate-900 tracking-tight mt-1">Trending Global Destinations</h2>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">Trending Global Destinations</h2>
                     </div>
-                    <button onclick="UI.navigate('flights')" class="mt-4 md:mt-0 text-sm font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1.5 group">
+                    <button onclick="UI.navigate('flights')" class="mt-2 sm:mt-0 text-xs sm:text-sm font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1.5 group">
                         <span>Explore All Flight Schedules</span>
                         <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </div>
 
-                <div id="popular-destinations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                <div id="popular-destinations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"></div>
             </section>
 
             <!-- Airline Partners Marquee -->
-            <section class="bg-slate-900 py-16 text-white border-y border-slate-800">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+            <section class="bg-slate-900 py-12 sm:py-16 text-white border-y border-slate-800">
+                <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 text-center space-y-6 sm:space-y-8">
                     <span class="text-xs uppercase font-extrabold tracking-widest text-sky-400">Integrated Global Carriers</span>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 items-center justify-center opacity-85">
-                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-xs">Singapore Air</div>
-                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-xs">Qatar Airways</div>
-                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-xs">Emirates</div>
-                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-xs">Cambodia Air</div>
-                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-xs">ANA Japan</div>
-                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-xs">Air France</div>
-                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-xs">Cathay Pacific</div>
-                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-xs">Delta Air</div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 sm:gap-4 items-center justify-center opacity-85">
+                        <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-[11px] sm:text-xs">Singapore Air</div>
+                        <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-[11px] sm:text-xs">Qatar Airways</div>
+                        <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-[11px] sm:text-xs">Emirates</div>
+                        <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-[11px] sm:text-xs">Cambodia Air</div>
+                        <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-[11px] sm:text-xs">ANA Japan</div>
+                        <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-[11px] sm:text-xs">Air France</div>
+                        <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-[11px] sm:text-xs">Cathay Pacific</div>
+                        <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/80 border border-slate-700 font-bold text-[11px] sm:text-xs">Delta Air</div>
                     </div>
                 </div>
             </section>
 
             <!-- Why Choose SkyBook -->
-            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                <div class="text-center max-w-2xl mx-auto mb-16">
+            <section class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-12 sm:py-20">
+                <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
                     <span class="text-xs font-black uppercase tracking-widest text-blue-600">Enterprise Aviation Tech</span>
-                    <h2 class="text-3xl font-black text-slate-900 tracking-tight mt-1">Engineered for Flawless Travel</h2>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">Engineered for Flawless Travel</h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-sm space-y-4 hover:shadow-xl transition-all">
-                        <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
-                            <i data-lucide="smartphone" class="w-6 h-6"></i>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/80 shadow-sm space-y-3 sm:space-y-4 hover:shadow-xl transition-all">
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                            <i data-lucide="smartphone" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">Instant Digital Boarding Pass</h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900">Instant Digital Boarding Pass</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                             Generate scannable QR tickets and printable official boarding documents directly after confirming your seat.
                         </p>
                     </div>
 
-                    <div class="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-sm space-y-4 hover:shadow-xl transition-all">
-                        <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                            <i data-lucide="layout-grid" class="w-6 h-6"></i>
+                    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/80 shadow-sm space-y-3 sm:space-y-4 hover:shadow-xl transition-all">
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                            <i data-lucide="layout-grid" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">Interactive Airplane Seat Map</h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900">Interactive Airplane Seat Map</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                             Pick First Class suites, Business pods, or Economy window/aisle seats directly on realistic fuselage layouts.
                         </p>
                     </div>
 
-                    <div class="p-8 rounded-3xl bg-white border border-slate-200/80 shadow-sm space-y-4 hover:shadow-xl transition-all">
-                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/80 shadow-sm space-y-3 sm:space-y-4 hover:shadow-xl transition-all">
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                            <i data-lucide="shield-check" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">Zero Server Latency</h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900">Zero Server Latency</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                             Built with client-side reactive state persistence so that your portfolio demo runs lightning fast 24/7 anywhere.
                         </p>
                     </div>
@@ -369,28 +392,28 @@
         <!-- ========================================== -->
         <!-- VIEW 2: FLIGHT SEARCH & RESULTS            -->
         <!-- ========================================== -->
-        <div id="view-flights" class="view-section hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+        <div id="view-flights" class="view-section hidden max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-8">
             <!-- Header Search Banner -->
-            <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
-                <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="bg-slate-900 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl relative overflow-hidden">
+                <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
                     <div>
-                        <span class="text-xs uppercase font-extrabold tracking-widest text-sky-400">Flight Finder Matrix</span>
-                        <h2 class="text-2xl sm:text-3xl font-black mt-1">Available Flights & Live Schedules</h2>
+                        <span class="text-[10px] sm:text-xs uppercase font-extrabold tracking-widest text-sky-400">Flight Finder Matrix</span>
+                        <h2 class="text-xl sm:text-3xl font-black mt-1">Available Flights & Live Schedules</h2>
                         <p class="text-xs text-slate-300 mt-1">Filter by price, airline carrier, duration, and direct non-stop connections.</p>
                     </div>
-                    <div id="flight-results-count" class="px-4 py-2 rounded-2xl bg-blue-600/30 border border-blue-400/30 text-sky-300 font-bold text-sm">
+                    <div id="flight-results-count" class="px-3.5 py-2 rounded-xl sm:rounded-2xl bg-blue-600/30 border border-blue-400/30 text-sky-300 font-bold text-xs sm:text-sm self-start md:self-auto">
                         Calculating routes...
                     </div>
                 </div>
             </div>
 
             <!-- Search Content: Left Filters & Right List -->
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8">
                 <!-- Left Sidebar Filters -->
                 <div class="space-y-6">
-                    <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-6">
+                    <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 shadow-sm space-y-5 sm:space-y-6">
                         <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                            <h3 class="text-sm font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
+                            <h3 class="text-xs sm:text-sm font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
                                 <i data-lucide="sliders-horizontal" class="w-4 h-4 text-blue-600"></i>
                                 <span>Filter Flights</span>
                             </h3>
@@ -401,10 +424,10 @@
                         <div class="space-y-1.5">
                             <label class="text-xs font-bold text-slate-600">Origin Hub</label>
                             <div onclick="UI.openAirportPicker('filter-origin')" class="p-3 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 cursor-pointer flex items-center justify-between transition">
-                                <div class="truncate">
+                                <div class="truncate pr-2">
                                     <span id="filter-origin-city" class="text-xs font-bold text-slate-800 block truncate">Phnom Penh</span>
                                 </div>
-                                <span id="filter-origin-code" class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-100 text-blue-700">PNH</span>
+                                <span id="filter-origin-code" class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-100 text-blue-700 shrink-0">PNH</span>
                             </div>
                         </div>
 
@@ -412,15 +435,15 @@
                         <div class="space-y-1.5">
                             <label class="text-xs font-bold text-slate-600">Destination Hub</label>
                             <div onclick="UI.openAirportPicker('filter-dest')" class="p-3 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 cursor-pointer flex items-center justify-between transition">
-                                <div class="truncate">
+                                <div class="truncate pr-2">
                                     <span id="filter-dest-city" class="text-xs font-bold text-slate-800 block truncate">Singapore</span>
                                 </div>
-                                <span id="filter-dest-code" class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-sky-100 text-sky-700">SIN</span>
+                                <span id="filter-dest-code" class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-sky-100 text-sky-700 shrink-0">SIN</span>
                             </div>
                         </div>
 
                         <!-- Max Price Range Slider -->
-                        <div class="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80 space-y-3">
+                        <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80 space-y-3">
                             <div class="flex items-center justify-between">
                                 <span class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                                     <i class="fa-solid fa-wallet text-blue-600 text-xs"></i> Max Budget
@@ -440,24 +463,24 @@
                             <span class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                                 <i class="fa-solid fa-route text-blue-600 text-xs"></i> Flight Stops
                             </span>
-                            <div class="grid grid-cols-3 gap-1.5 p-1 bg-slate-100/90 rounded-2xl border border-slate-200/70">
+                            <div class="grid grid-cols-3 gap-1 p-1 bg-slate-100/90 rounded-2xl border border-slate-200/70">
                                 <label class="stops-segment-btn cursor-pointer block">
                                     <input type="radio" name="filter-stops" value="all" checked class="sr-only">
-                                    <div class="stops-segment-content py-2 px-1 rounded-xl text-center font-bold text-[11px] text-slate-600 border border-transparent transition flex flex-col items-center gap-0.5">
+                                    <div class="stops-segment-content py-2 px-1 rounded-xl text-center font-bold text-[10px] sm:text-[11px] text-slate-600 border border-transparent transition flex flex-col items-center gap-0.5">
                                         <i class="fa-solid fa-layer-group text-xs text-slate-400"></i>
                                         <span>All</span>
                                     </div>
                                 </label>
                                 <label class="stops-segment-btn cursor-pointer block">
                                     <input type="radio" name="filter-stops" value="direct" class="sr-only">
-                                    <div class="stops-segment-content py-2 px-1 rounded-xl text-center font-bold text-[11px] text-slate-600 border border-transparent transition flex flex-col items-center gap-0.5">
+                                    <div class="stops-segment-content py-2 px-1 rounded-xl text-center font-bold text-[10px] sm:text-[11px] text-slate-600 border border-transparent transition flex flex-col items-center gap-0.5">
                                         <i class="fa-solid fa-bolt text-xs text-slate-400"></i>
                                         <span>Direct</span>
                                     </div>
                                 </label>
                                 <label class="stops-segment-btn cursor-pointer block">
                                     <input type="radio" name="filter-stops" value="stops" class="sr-only">
-                                    <div class="stops-segment-content py-2 px-1 rounded-xl text-center font-bold text-[11px] text-slate-600 border border-transparent transition flex flex-col items-center gap-0.5">
+                                    <div class="stops-segment-content py-2 px-1 rounded-xl text-center font-bold text-[10px] sm:text-[11px] text-slate-600 border border-transparent transition flex flex-col items-center gap-0.5">
                                         <i class="fa-solid fa-clock-rotate-left text-xs text-slate-400"></i>
                                         <span>1+ Stops</span>
                                     </div>
@@ -473,7 +496,7 @@
                                 </span>
                                 <span class="text-[10px] font-bold text-slate-400">Select Multiple</span>
                             </div>
-                            <div class="space-y-1.5 max-h-56 overflow-y-auto pr-1">
+                            <div class="space-y-1.5 max-h-52 overflow-y-auto pr-1">
                                 <label class="airline-filter-card flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-blue-50/40 cursor-pointer transition">
                                     <div class="flex items-center gap-2.5 truncate">
                                         <div class="w-6 h-6 rounded-lg bg-amber-600 text-white font-black text-[9px] flex items-center justify-center shrink-0">SQ</div>
@@ -542,19 +565,19 @@
                 <!-- Right Flights List -->
                 <div class="lg:col-span-3 space-y-4">
                     <!-- Sort Bar -->
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/80 shadow-sm">
                         <div class="flex items-center gap-2.5">
-                            <span class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                            <span class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
                                 <i class="fa-solid fa-arrow-down-short-wide text-xs"></i>
                             </span>
                             <div>
                                 <span class="text-xs font-black text-slate-900 block leading-tight">Sort Flight Results</span>
-                                <span class="text-[11px] text-slate-400 font-semibold">Rank flights to match your preference</span>
+                                <span class="text-[10px] sm:text-[11px] text-slate-400 font-semibold">Rank flights to match your preference</span>
                             </div>
                         </div>
                         
-                        <div class="relative min-w-[220px]">
-                            <select id="search-sort-by" class="custom-sort-select w-full py-2.5 pl-3.5 pr-9 bg-slate-50 hover:bg-slate-100/80 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:ring-2 focus:ring-blue-600 focus:bg-white focus:outline-none transition cursor-pointer">
+                        <div class="relative w-full sm:w-auto min-w-[200px]">
+                            <select id="search-sort-by" class="custom-sort-select w-full py-2 sm:py-2.5 pl-3 pr-8 bg-slate-50 hover:bg-slate-100/80 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:ring-2 focus:ring-blue-600 focus:bg-white focus:outline-none transition cursor-pointer">
                                 <option value="price-asc">Lowest Price First</option>
                                 <option value="price-desc">Highest Price First</option>
                                 <option value="duration">Shortest Flight Duration</option>
@@ -572,13 +595,13 @@
         <!-- ========================================== -->
         <!-- VIEW 3: MY BOOKINGS                        -->
         <!-- ========================================== -->
-        <div id="view-bookings" class="view-section hidden max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div id="view-bookings" class="view-section hidden max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                     <h2 class="text-2xl sm:text-3xl font-black text-slate-900">My Flight Reservations</h2>
                     <p class="text-xs text-slate-500 mt-1">Manage active tickets, print official boarding passes, or view trip receipts.</p>
                 </div>
-                <button onclick="UI.navigate('flights')" class="px-4 py-2.5 bg-blue-600 text-white rounded-xl font-bold text-xs flex items-center gap-2 shadow hover:bg-blue-700 transition">
+                <button onclick="UI.navigate('flights')" class="self-start sm:self-auto px-4 py-2.5 bg-blue-600 text-white rounded-xl font-bold text-xs flex items-center gap-2 shadow hover:bg-blue-700 transition">
                     <i data-lucide="plus" class="w-4 h-4"></i>
                     <span>Book Another Flight</span>
                 </button>
@@ -590,55 +613,55 @@
         <!-- ========================================== -->
         <!-- VIEW 4: CUSTOMER DASHBOARD                 -->
         <!-- ========================================== -->
-        <div id="view-dashboard" class="view-section hidden max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+        <div id="view-dashboard" class="view-section hidden max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-8">
             <!-- User Welcome Banner -->
-            <div class="rounded-3xl p-8 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="rounded-2xl sm:rounded-3xl p-5 sm:p-8 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
                 <div class="space-y-2">
-                    <div class="flex items-center gap-2">
-                        <span id="dash-user-tier" class="px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-black border border-amber-400/30">Platinum Member</span>
-                        <span class="text-xs text-slate-400">Frequent Flyer #SB-94820</span>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span id="dash-user-tier" class="px-2.5 sm:px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-[11px] sm:text-xs font-black border border-amber-400/30">Platinum Member</span>
+                        <span class="text-[11px] sm:text-xs text-slate-400">Frequent Flyer #SB-94820</span>
                     </div>
-                    <h2 class="text-3xl font-black">Welcome back, <span id="dash-user-name">Alex</span>! 👋</h2>
+                    <h2 class="text-2xl sm:text-3xl font-black">Welcome back, <span id="dash-user-name">Alex</span>! 👋</h2>
                     <p class="text-xs text-slate-300">Here is a quick snapshot of your upcoming flights and loyalty air miles.</p>
                 </div>
-                <button onclick="UI.navigate('flights')" class="px-5 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 font-bold text-xs shadow-lg transition">
+                <button onclick="UI.navigate('flights')" class="self-start md:self-auto px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-blue-600 hover:bg-blue-500 font-bold text-xs shadow-lg transition">
                     Plan New Journey
                 </button>
             </div>
 
             <!-- Stats Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                <div class="bg-white p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm space-y-2">
                     <div class="flex items-center justify-between text-slate-400">
                         <span class="text-xs font-bold uppercase tracking-wider">Total Trips</span>
                         <i data-lucide="plane" class="w-5 h-5 text-blue-600"></i>
                     </div>
-                    <div id="dash-total-trips" class="text-3xl font-black text-slate-900">2</div>
+                    <div id="dash-total-trips" class="text-2xl sm:text-3xl font-black text-slate-900">2</div>
                     <span class="text-[11px] text-emerald-600 font-semibold">1 Upcoming Departure</span>
                 </div>
 
-                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2">
+                <div class="bg-white p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm space-y-2">
                     <div class="flex items-center justify-between text-slate-400">
                         <span class="text-xs font-bold uppercase tracking-wider">Loyalty Miles</span>
                         <i data-lucide="award" class="w-5 h-5 text-amber-500"></i>
                     </div>
-                    <div id="dash-miles-earned" class="text-3xl font-black text-slate-900">48,520</div>
+                    <div id="dash-miles-earned" class="text-2xl sm:text-3xl font-black text-slate-900">48,520</div>
                     <span class="text-[11px] text-slate-400">Eligible for Lounge Access</span>
                 </div>
 
-                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2">
+                <div class="bg-white p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm space-y-2">
                     <div class="flex items-center justify-between text-slate-400">
                         <span class="text-xs font-bold uppercase tracking-wider">Total Travel Spend</span>
                         <i data-lucide="credit-card" class="w-5 h-5 text-indigo-600"></i>
                     </div>
-                    <div id="dash-total-spent" class="text-3xl font-black text-slate-900">$615</div>
+                    <div id="dash-total-spent" class="text-2xl sm:text-3xl font-black text-slate-900">$615</div>
                     <span class="text-[11px] text-slate-400">Saved $140 in Promo Tiers</span>
                 </div>
             </div>
 
             <!-- Upcoming Departures Card -->
-            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
-                <h3 class="text-base font-black text-slate-900 flex items-center gap-2">
+            <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+                <h3 class="text-sm sm:text-base font-black text-slate-900 flex items-center gap-2">
                     <i data-lucide="calendar-check" class="w-4 h-4 text-blue-600"></i>
                     <span>Upcoming Flight Schedules</span>
                 </h3>
@@ -649,20 +672,20 @@
         <!-- ========================================== -->
         <!-- VIEW 5: ADMIN PANEL                        -->
         <!-- ========================================== -->
-        <div id="view-admin" class="view-section hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-6">
+        <div id="view-admin" class="view-section hidden max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4 sm:pb-6">
                 <div>
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-2 flex-wrap">
                         <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-500/20 text-amber-600 border border-amber-500/30">ADMINISTRATOR CONTROL</span>
                         <span class="text-xs text-slate-400">Global Flight Operations</span>
                     </div>
-                    <h2 class="text-3xl font-black text-slate-900 mt-1">SkyBook Aviation Management Center</h2>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">SkyBook Aviation Management Center</h2>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button onclick="UI.resetAllData()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+                <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                    <button onclick="UI.resetAllData()" class="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
                         Reset Demo Data
                     </button>
-                    <button onclick="UI.openAddFlightModal()" class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow flex items-center gap-1.5 transition">
+                    <button onclick="UI.openAddFlightModal()" class="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow flex items-center gap-1.5 transition">
                         <i data-lucide="plus" class="w-4 h-4"></i>
                         <span>Create Scheduled Flight</span>
                     </button>
@@ -670,50 +693,50 @@
             </div>
 
             <!-- Admin Stat Cards -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                    <span class="text-xs font-bold text-slate-400 uppercase">Gross Revenue</span>
-                    <div id="admin-stat-revenue" class="text-2xl font-black text-slate-900 mt-1">$0</div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div class="p-3.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                    <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Gross Revenue</span>
+                    <div id="admin-stat-revenue" class="text-xl sm:text-2xl font-black text-slate-900 mt-1">$0</div>
                 </div>
-                <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                    <span class="text-xs font-bold text-slate-400 uppercase">Active Flights</span>
-                    <div id="admin-stat-flights" class="text-2xl font-black text-blue-600 mt-1">0</div>
+                <div class="p-3.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                    <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Active Flights</span>
+                    <div id="admin-stat-flights" class="text-xl sm:text-2xl font-black text-blue-600 mt-1">0</div>
                 </div>
-                <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                    <span class="text-xs font-bold text-slate-400 uppercase">Total Reservations</span>
-                    <div id="admin-stat-bookings" class="text-2xl font-black text-emerald-600 mt-1">0</div>
+                <div class="p-3.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                    <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Total Reservations</span>
+                    <div id="admin-stat-bookings" class="text-xl sm:text-2xl font-black text-emerald-600 mt-1">0</div>
                 </div>
-                <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                    <span class="text-xs font-bold text-slate-400 uppercase">Airport Network</span>
-                    <div id="admin-stat-airports" class="text-2xl font-black text-indigo-600 mt-1">0</div>
+                <div class="p-3.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                    <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Airport Network</span>
+                    <div id="admin-stat-airports" class="text-xl sm:text-2xl font-black text-indigo-600 mt-1">0</div>
                 </div>
             </div>
 
             <!-- Analytics Chart -->
-            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
-                <h3 class="text-sm font-black text-slate-900 uppercase tracking-wider">Weekly Bookings & Revenue Trajectory</h3>
-                <div class="h-64">
+            <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+                <h3 class="text-xs sm:text-sm font-black text-slate-900 uppercase tracking-wider">Weekly Bookings & Revenue Trajectory</h3>
+                <div class="h-56 sm:h-64">
                     <canvas id="admin-analytics-chart"></canvas>
                 </div>
             </div>
 
             <!-- Flights Management Table -->
-            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+            <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-4">
                 <div class="flex items-center justify-between">
-                    <h3 class="text-sm font-black text-slate-900 uppercase tracking-wider">Flight Schedule Roster</h3>
+                    <h3 class="text-xs sm:text-sm font-black text-slate-900 uppercase tracking-wider">Flight Schedule Roster</h3>
                     <span class="text-xs text-slate-400 font-semibold">Live inventory</span>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
+                <div class="responsive-table-container">
+                    <table class="w-full text-left min-w-[620px]">
                         <thead>
-                            <tr class="border-b border-slate-200 text-[11px] uppercase font-extrabold text-slate-400 tracking-wider">
-                                <th class="py-3 px-4">Flight</th>
-                                <th class="py-3 px-4">Carrier</th>
-                                <th class="py-3 px-4">Route</th>
-                                <th class="py-3 px-4">Departure</th>
-                                <th class="py-3 px-4">Price</th>
-                                <th class="py-3 px-4">Seats Left</th>
-                                <th class="py-3 px-4 text-right">Actions</th>
+                            <tr class="border-b border-slate-200 text-[10px] sm:text-[11px] uppercase font-extrabold text-slate-400 tracking-wider">
+                                <th class="py-3 px-3 sm:px-4">Flight</th>
+                                <th class="py-3 px-3 sm:px-4">Carrier</th>
+                                <th class="py-3 px-3 sm:px-4">Route</th>
+                                <th class="py-3 px-3 sm:px-4">Departure</th>
+                                <th class="py-3 px-3 sm:px-4">Price</th>
+                                <th class="py-3 px-3 sm:px-4">Seats Left</th>
+                                <th class="py-3 px-3 sm:px-4 text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="admin-flights-tbody"></tbody>
@@ -722,21 +745,21 @@
             </div>
 
             <!-- Bookings Management Table -->
-            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+            <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-4">
                 <div class="flex items-center justify-between">
-                    <h3 class="text-sm font-black text-slate-900 uppercase tracking-wider">Customer Reservations Log</h3>
+                    <h3 class="text-xs sm:text-sm font-black text-slate-900 uppercase tracking-wider">Customer Reservations Log</h3>
                     <span class="text-xs text-slate-400 font-semibold">All customer orders</span>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
+                <div class="responsive-table-container">
+                    <table class="w-full text-left min-w-[620px]">
                         <thead>
-                            <tr class="border-b border-slate-200 text-[11px] uppercase font-extrabold text-slate-400 tracking-wider">
-                                <th class="py-3 px-4">Booking Ref</th>
-                                <th class="py-3 px-4">Passenger Name</th>
-                                <th class="py-3 px-4">Flight</th>
-                                <th class="py-3 px-4">Seat (Class)</th>
-                                <th class="py-3 px-4">Amount</th>
-                                <th class="py-3 px-4">Status</th>
+                            <tr class="border-b border-slate-200 text-[10px] sm:text-[11px] uppercase font-extrabold text-slate-400 tracking-wider">
+                                <th class="py-3 px-3 sm:px-4">Booking Ref</th>
+                                <th class="py-3 px-3 sm:px-4">Passenger Name</th>
+                                <th class="py-3 px-3 sm:px-4">Flight</th>
+                                <th class="py-3 px-3 sm:px-4">Seat (Class)</th>
+                                <th class="py-3 px-3 sm:px-4">Amount</th>
+                                <th class="py-3 px-3 sm:px-4">Status</th>
                             </tr>
                         </thead>
                         <tbody id="admin-bookings-tbody"></tbody>
@@ -750,14 +773,14 @@
     <!-- ======================================================= -->
     <!-- MODAL: LUXURY AIRPORT AUTOCOMPLETE SEARCH SELECTOR     -->
     <!-- ======================================================= -->
-    <div id="airport-picker-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 modal-backdrop">
-        <div class="bg-white rounded-3xl max-w-xl w-full max-h-[85vh] overflow-hidden shadow-2xl border border-slate-200 flex flex-col modal-content">
+    <div id="airport-picker-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 modal-backdrop">
+        <div class="bg-white rounded-2xl sm:rounded-3xl max-w-xl w-full max-h-[88vh] overflow-hidden shadow-2xl border border-slate-200 flex flex-col modal-content">
             
             <!-- Header with Search Input -->
-            <div class="p-6 border-b border-slate-100 space-y-4">
+            <div class="p-4 sm:p-6 border-b border-slate-100 space-y-3 sm:space-y-4">
                 <div class="flex items-center justify-between">
-                    <h3 id="picker-modal-title" class="text-lg font-black text-slate-900">Select Airport Hub</h3>
-                    <button onclick="UI.closeAirportPicker()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
+                    <h3 id="picker-modal-title" class="text-base sm:text-lg font-black text-slate-900">Select Airport Hub</h3>
+                    <button onclick="UI.closeAirportPicker()" class="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
                         <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
                 </div>
@@ -767,71 +790,71 @@
                     <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                         <i data-lucide="search" class="w-4 h-4"></i>
                     </div>
-                    <input type="text" id="airport-search-input" placeholder="Type city (e.g. Phnom Penh, Singapore, Tokyo) or IATA code..." class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:bg-white focus:outline-none">
+                    <input type="text" id="airport-search-input" placeholder="Type city (e.g. Phnom Penh, Singapore, Tokyo) or IATA code..." class="w-full pl-10 pr-4 py-2.5 sm:py-3 bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:bg-white focus:outline-none">
                 </div>
 
                 <!-- Region Quick Filter Chips -->
-                <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
-                    <button onclick="UI.filterAirportRegion('All')" data-region="All" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-sm transition whitespace-nowrap">All Hubs</button>
-                    <button onclick="UI.filterAirportRegion('Southeast Asia')" data-region="Southeast Asia" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">Southeast Asia</button>
-                    <button onclick="UI.filterAirportRegion('East Asia')" data-region="East Asia" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">East Asia</button>
-                    <button onclick="UI.filterAirportRegion('Middle East')" data-region="Middle East" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">Middle East</button>
-                    <button onclick="UI.filterAirportRegion('Europe')" data-region="Europe" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">Europe</button>
-                    <button onclick="UI.filterAirportRegion('North America')" data-region="North America" class="region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">North America</button>
+                <div class="flex items-center gap-1 sm:gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
+                    <button onclick="UI.filterAirportRegion('All')" data-region="All" class="region-chip-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold bg-blue-600 text-white shadow-sm transition whitespace-nowrap">All Hubs</button>
+                    <button onclick="UI.filterAirportRegion('Southeast Asia')" data-region="Southeast Asia" class="region-chip-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">Southeast Asia</button>
+                    <button onclick="UI.filterAirportRegion('East Asia')" data-region="East Asia" class="region-chip-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">East Asia</button>
+                    <button onclick="UI.filterAirportRegion('Middle East')" data-region="Middle East" class="region-chip-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">Middle East</button>
+                    <button onclick="UI.filterAirportRegion('Europe')" data-region="Europe" class="region-chip-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">Europe</button>
+                    <button onclick="UI.filterAirportRegion('North America')" data-region="North America" class="region-chip-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap">North America</button>
                 </div>
             </div>
 
             <!-- Airport List Results Container -->
-            <div id="airport-picker-list" class="p-6 overflow-y-auto flex-1 space-y-2.5 max-h-96"></div>
+            <div id="airport-picker-list" class="p-3 sm:p-6 overflow-y-auto flex-1 space-y-2 max-h-96"></div>
         </div>
     </div>
 
     <!-- ========================================== -->
     <!-- MODAL 1: INTERACTIVE AIRPLANE SEAT MAP     -->
     <!-- ========================================== -->
-    <div id="seat-selector-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto modal-backdrop">
-        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 p-6 sm:p-8 space-y-6 modal-content">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-sm border border-blue-100">
-                        <i class="fa-solid fa-chair text-lg"></i>
+    <div id="seat-selector-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-2.5 sm:p-4 overflow-y-auto modal-backdrop">
+        <div class="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 modal-content">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 sm:pb-4">
+                <div class="flex items-center gap-2.5 sm:gap-3">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-sm border border-blue-100 shrink-0">
+                        <i class="fa-solid fa-chair text-sm sm:text-lg"></i>
                     </div>
                     <div>
-                        <span class="text-xs font-black uppercase tracking-wider text-blue-600">Aircraft Seat Layout</span>
-                        <h3 class="text-xl font-black text-slate-900 mt-0.5">Select Your Cabin Seat</h3>
+                        <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-blue-600">Aircraft Seat Layout</span>
+                        <h3 class="text-base sm:text-xl font-black text-slate-900 mt-0.5">Select Your Cabin Seat</h3>
                     </div>
                 </div>
-                <button onclick="UI.closeSeatModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
+                <button onclick="UI.closeSeatModal()" class="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
 
             <!-- Flight Header Summary -->
-            <div id="modal-flight-summary" class="p-4 rounded-2xl bg-slate-50 border border-slate-200"></div>
+            <div id="modal-flight-summary" class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200"></div>
 
             <!-- Seat Legend -->
-            <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-bold text-slate-600 border-b border-slate-100 pb-3">
-                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-slate-100 border border-slate-300 flex items-center justify-center text-[8px]"><i class="fa-solid fa-plane text-slate-500"></i></span> Available ($0)</div>
-                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-blue-600"></span> Selected</div>
-                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-amber-100 border border-amber-300 flex items-center justify-center text-[8px]"><i class="fa-solid fa-star text-amber-500"></i></span> First Class Suite</div>
-                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-indigo-100 border border-indigo-300 flex items-center justify-center text-[8px]"><i class="fa-solid fa-gem text-indigo-500"></i></span> Business Class</div>
-                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded bg-slate-200 opacity-60"></span> Occupied</div>
+            <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-[10px] sm:text-xs font-bold text-slate-600 border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-1"><span class="w-3.5 h-3.5 rounded bg-slate-100 border border-slate-300 flex items-center justify-center text-[7px]"><i class="fa-solid fa-plane text-slate-500"></i></span> Available</div>
+                <div class="flex items-center gap-1"><span class="w-3.5 h-3.5 rounded bg-blue-600"></span> Selected</div>
+                <div class="flex items-center gap-1"><span class="w-3.5 h-3.5 rounded bg-amber-100 border border-amber-300 flex items-center justify-center text-[7px]"><i class="fa-solid fa-star text-amber-500"></i></span> First</div>
+                <div class="flex items-center gap-1"><span class="w-3.5 h-3.5 rounded bg-indigo-100 border border-indigo-300 flex items-center justify-center text-[7px]"><i class="fa-solid fa-gem text-indigo-500"></i></span> Business</div>
+                <div class="flex items-center gap-1"><span class="w-3.5 h-3.5 rounded bg-slate-200 opacity-60"></span> Occupied</div>
             </div>
 
             <!-- Fuselage & Seats Container -->
-            <div id="seat-map-fuselage" class="overflow-x-auto py-2"></div>
+            <div id="seat-map-fuselage" class="overflow-x-auto py-1 sm:py-2"></div>
 
             <!-- Seat Selection Summary & Proceed Button -->
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100">
-                <div>
-                    <span class="text-xs text-slate-400 block font-semibold">Seat & Class Chosen:</span>
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-slate-100">
+                <div class="flex sm:flex-col items-center sm:items-start justify-between sm:justify-start">
+                    <span class="text-[11px] sm:text-xs text-slate-400 block font-semibold">Seat & Class Chosen:</span>
                     <div class="flex items-center gap-2">
-                        <span id="selected-seat-badge" class="font-mono font-black text-lg text-blue-600">14B</span>
-                        <span id="selected-cabin-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-700">Economy</span>
-                        <span id="selected-fare-total" class="text-lg font-black text-slate-900">$185</span>
+                        <span id="selected-seat-badge" class="font-mono font-black text-base sm:text-lg text-blue-600">14B</span>
+                        <span id="selected-cabin-badge" class="px-2 py-0.5 rounded-full text-[11px] sm:text-xs font-bold bg-blue-50 text-blue-700">Economy</span>
+                        <span id="selected-fare-total" class="text-base sm:text-lg font-black text-slate-900">$185</span>
                     </div>
                 </div>
-                <button onclick="UI.proceedToCheckout()" class="w-full sm:w-auto px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 transition">
+                <button onclick="UI.proceedToCheckout()" class="w-full sm:w-auto px-5 py-3 sm:py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 transition">
                     <span>Continue to Passenger Details</span>
                     <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </button>
@@ -842,43 +865,43 @@
     <!-- ========================================== -->
     <!-- MODAL 2: PASSENGER DETAILS & CHECKOUT      -->
     <!-- ========================================== -->
-    <div id="checkout-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto modal-backdrop">
-        <div class="bg-white rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 p-6 sm:p-8 space-y-6 modal-content">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+    <div id="checkout-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-2.5 sm:p-4 overflow-y-auto modal-backdrop">
+        <div class="bg-white rounded-2xl sm:rounded-3xl max-w-xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 modal-content">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 sm:pb-4">
                 <div>
-                    <span class="text-xs font-black uppercase tracking-wider text-blue-600">Step 2 of 2</span>
-                    <h3 class="text-xl font-black text-slate-900 mt-0.5">Passenger Details & Instant Checkout</h3>
+                    <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-blue-600">Step 2 of 2</span>
+                    <h3 class="text-lg sm:text-xl font-black text-slate-900 mt-0.5">Passenger Details & Instant Checkout</h3>
                 </div>
-                <button onclick="UI.closeCheckoutModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
+                <button onclick="UI.closeCheckoutModal()" class="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
 
-            <form onsubmit="UI.submitBooking(event)" class="space-y-4">
+            <form onsubmit="UI.submitBooking(event)" class="space-y-3 sm:space-y-4">
                 <div class="space-y-1">
                     <label class="text-xs font-bold text-slate-700">Full Passenger Name (as on Passport) *</label>
-                    <input type="text" id="checkout-pass-name" required placeholder="e.g. Alex Morgan" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                    <input type="text" id="checkout-pass-name" required placeholder="e.g. Alex Morgan" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none">
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-700">Email Address (for E-Ticket) *</label>
-                        <input type="email" id="checkout-pass-email" required placeholder="alex@example.com" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                        <input type="email" id="checkout-pass-email" required placeholder="alex@example.com" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none">
                     </div>
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-700">Phone Number</label>
-                        <input type="tel" id="checkout-pass-phone" value="+1 (555) 349-8821" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                        <input type="tel" id="checkout-pass-phone" value="+1 (555) 349-8821" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none">
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-700">Passport / National ID *</label>
-                        <input type="text" id="checkout-pass-passport" required value="N84920188" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                        <input type="text" id="checkout-pass-passport" required value="N84920188" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none">
                     </div>
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-700">Nationality</label>
-                        <select id="checkout-pass-nationality" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                        <select id="checkout-pass-nationality" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none">
                             <option value="United States">United States</option>
                             <option value="Cambodia">Cambodia</option>
                             <option value="Singapore">Singapore</option>
@@ -891,8 +914,8 @@
                 </div>
 
                 <!-- Fare Breakdown Card -->
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-                    <span class="text-xs font-black uppercase text-slate-400">Order Summary</span>
+                <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <span class="text-[10px] sm:text-xs font-black uppercase text-slate-400">Order Summary</span>
                     <div id="checkout-fare-breakdown"></div>
                 </div>
 
@@ -902,7 +925,7 @@
                     <span>Instant demo booking. Your boarding pass and barcode will be created immediately.</span>
                 </div>
 
-                <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-sm rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center justify-center gap-2">
+                <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-xs sm:text-sm rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center justify-center gap-2">
                     <i data-lucide="check" class="w-4 h-4"></i>
                     <span>Confirm Reservation & Generate Boarding Pass</span>
                 </button>
@@ -913,19 +936,20 @@
     <!-- ========================================== -->
     <!-- MODAL 3: BOARDING PASS & E-TICKET VIEWER   -->
     <!-- ========================================== -->
-    <div id="boarding-pass-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto modal-backdrop">
-        <div class="bg-transparent max-w-4xl w-full max-h-[95vh] overflow-y-auto space-y-4 modal-content">
-            <div class="flex items-center justify-between no-print bg-slate-900/80 backdrop-blur p-4 rounded-2xl border border-slate-800 text-white">
+    <div id="boarding-pass-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-2 sm:p-4 overflow-y-auto modal-backdrop">
+        <div class="bg-transparent max-w-4xl w-full max-h-[96vh] overflow-y-auto space-y-3 sm:space-y-4 modal-content">
+            <div class="flex items-center justify-between no-print bg-slate-900/90 backdrop-blur p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-800 text-white">
                 <div class="flex items-center gap-2">
-                    <i data-lucide="ticket" class="w-5 h-5 text-sky-400"></i>
-                    <span class="font-bold text-sm">Official Electronic Flight Ticket</span>
+                    <i data-lucide="ticket" class="w-4 h-4 sm:w-5 sm:h-5 text-sky-400"></i>
+                    <span class="font-bold text-xs sm:text-sm">Official Electronic Flight Ticket</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button onclick="UI.printBoardingPass()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow flex items-center gap-1.5 transition">
+                    <button onclick="UI.printBoardingPass()" class="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-lg sm:rounded-xl shadow flex items-center gap-1.5 transition">
                         <i data-lucide="printer" class="w-3.5 h-3.5"></i>
-                        <span>Print / Save PDF</span>
+                        <span class="hidden sm:inline">Print / Save PDF</span>
+                        <span class="sm:hidden">Print</span>
                     </button>
-                    <button onclick="UI.closeBoardingPassModal()" class="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition">
+                    <button onclick="UI.closeBoardingPassModal()" class="p-1.5 sm:p-2 text-slate-400 hover:text-white rounded-lg sm:rounded-xl hover:bg-slate-800 transition">
                         <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
                 </div>
@@ -939,10 +963,10 @@
     <!-- ========================================== -->
     <!-- MODAL 4: ROLE SWITCHER (DEMO CONTROL)      -->
     <!-- ========================================== -->
-    <div id="role-switcher-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 modal-backdrop">
-        <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 p-6 space-y-4 modal-content">
+    <div id="role-switcher-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 modal-backdrop">
+        <div class="bg-white rounded-2xl sm:rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 p-4 sm:p-6 space-y-4 modal-content">
             <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h3 class="text-base font-black text-slate-900">Switch Demo Account Role</h3>
+                <h3 class="text-sm sm:text-base font-black text-slate-900">Switch Demo Account Role</h3>
                 <button onclick="UI.toggleRoleMenu()" class="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg">
                     <i data-lucide="x" class="w-4 h-4"></i>
                 </button>
@@ -950,35 +974,35 @@
 
             <p class="text-xs text-slate-500">Select any role to test passenger booking flows or administrative flight controls:</p>
 
-            <div class="space-y-2.5">
-                <button onclick="UI.setRole('customer'); UI.toggleRoleMenu();" class="w-full p-3.5 rounded-2xl bg-blue-50 hover:bg-blue-100/80 border border-blue-200 text-left flex items-center justify-between transition group">
+            <div class="space-y-2 sm:space-y-2.5">
+                <button onclick="UI.setRole('customer'); UI.toggleRoleMenu();" class="w-full p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-blue-50 hover:bg-blue-100/80 border border-blue-200 text-left flex items-center justify-between transition group">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center text-xs">AM</div>
+                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center text-xs shrink-0">AM</div>
                         <div>
-                            <span class="block text-sm font-bold text-slate-900 group-hover:text-blue-600">Alex Morgan (Customer)</span>
-                            <span class="block text-[11px] text-slate-500">Test booking, seats, boarding pass & dashboard</span>
+                            <span class="block text-xs sm:text-sm font-bold text-slate-900 group-hover:text-blue-600">Alex Morgan (Customer)</span>
+                            <span class="block text-[10px] sm:text-[11px] text-slate-500">Test booking, seats, boarding pass & dashboard</span>
                         </div>
                     </div>
-                    <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
+                    <i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0"></i>
                 </button>
 
-                <button onclick="UI.setRole('admin'); UI.toggleRoleMenu();" class="w-full p-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100/80 border border-amber-200 text-left flex items-center justify-between transition group">
+                <button onclick="UI.setRole('admin'); UI.toggleRoleMenu();" class="w-full p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-amber-50 hover:bg-amber-100/80 border border-amber-200 text-left flex items-center justify-between transition group">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-xl bg-amber-600 text-white font-bold flex items-center justify-center text-xs">AD</div>
+                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-amber-600 text-white font-bold flex items-center justify-center text-xs shrink-0">AD</div>
                         <div>
-                            <span class="block text-sm font-bold text-slate-900 group-hover:text-amber-600">Admin System</span>
-                            <span class="block text-[11px] text-slate-500">Access flight creation CRUD, bookings log & Chart.js</span>
+                            <span class="block text-xs sm:text-sm font-bold text-slate-900 group-hover:text-amber-600">Admin System</span>
+                            <span class="block text-[10px] sm:text-[11px] text-slate-500">Access flight creation CRUD, bookings log & Chart.js</span>
                         </div>
                     </div>
-                    <i data-lucide="shield" class="w-4 h-4 text-amber-600"></i>
+                    <i data-lucide="shield" class="w-4 h-4 text-amber-600 shrink-0"></i>
                 </button>
 
-                <button onclick="UI.setRole('guest'); UI.toggleRoleMenu();" class="w-full p-3.5 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-left flex items-center justify-between transition group">
+                <button onclick="UI.setRole('guest'); UI.toggleRoleMenu();" class="w-full p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-left flex items-center justify-between transition group">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-xl bg-slate-600 text-white font-bold flex items-center justify-center text-xs">GV</div>
+                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-600 text-white font-bold flex items-center justify-center text-xs shrink-0">GV</div>
                         <div>
-                            <span class="block text-sm font-bold text-slate-900">Guest Visitor</span>
-                            <span class="block text-[11px] text-slate-500">Unauthenticated flight search visitor mode</span>
+                            <span class="block text-xs sm:text-sm font-bold text-slate-900">Guest Visitor</span>
+                            <span class="block text-[10px] sm:text-[11px] text-slate-500">Unauthenticated flight search visitor mode</span>
                         </div>
                     </div>
                 </button>
@@ -989,27 +1013,27 @@
     <!-- ========================================== -->
     <!-- MODAL 5: ADMIN CREATE FLIGHT               -->
     <!-- ========================================== -->
-    <div id="admin-add-flight-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto modal-backdrop">
-        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 p-6 sm:p-8 space-y-6 modal-content">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+    <div id="admin-add-flight-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-2.5 sm:p-4 overflow-y-auto modal-backdrop">
+        <div class="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 modal-content">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 sm:pb-4">
                 <div>
-                    <span class="text-xs font-black uppercase tracking-wider text-blue-600">Admin Operation</span>
-                    <h3 class="text-xl font-black text-slate-900 mt-0.5">Schedule New Flight</h3>
+                    <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-blue-600">Admin Operation</span>
+                    <h3 class="text-lg sm:text-xl font-black text-slate-900 mt-0.5">Schedule New Flight</h3>
                 </div>
-                <button onclick="UI.closeAddFlightModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
+                <button onclick="UI.closeAddFlightModal()" class="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
 
-            <form onsubmit="UI.submitNewFlight(event)" class="space-y-4">
-                <div class="grid grid-cols-2 gap-4">
+            <form onsubmit="UI.submitNewFlight(event)" class="space-y-3 sm:space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-700">Flight Code</label>
-                        <input type="text" id="new-flight-number" required value="SQ-910" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold">
+                        <input type="text" id="new-flight-number" required value="SQ-910" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold">
                     </div>
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-700">Airline Carrier</label>
-                        <select id="new-flight-airline" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold">
+                        <select id="new-flight-airline" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold">
                             <option value="1">Singapore Airlines</option>
                             <option value="2">Qatar Airways</option>
                             <option value="3">Emirates</option>
@@ -1020,10 +1044,10 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-700">Origin Hub</label>
-                        <select id="new-flight-origin" class="select-origin w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold">
+                        <select id="new-flight-origin" class="select-origin w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold">
                             <option value="PNH">Phnom Penh (PNH)</option>
                             <option value="SIN">Singapore (SIN)</option>
                             <option value="BKK">Bangkok (BKK)</option>
@@ -1034,7 +1058,7 @@
                     </div>
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-700">Destination Hub</label>
-                        <select id="new-flight-dest" class="select-destination w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold">
+                        <select id="new-flight-dest" class="select-destination w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold">
                             <option value="SIN">Singapore (SIN)</option>
                             <option value="PNH">Phnom Penh (PNH)</option>
                             <option value="BKK">Bangkok (BKK)</option>
@@ -1045,7 +1069,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-3 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-700">Date</label>
                         <input type="date" id="new-flight-date" value="2026-08-27" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold">
@@ -1060,7 +1084,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-xl shadow transition">
+                <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow transition">
                     Publish Flight Schedule
                 </button>
             </form>
@@ -1074,10 +1098,10 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 pt-16 pb-12 border-t border-slate-800 mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-                <div class="space-y-4">
+    <footer class="bg-slate-900 text-slate-400 pt-12 sm:pt-16 pb-8 sm:pb-12 border-t border-slate-800 mt-12 sm:mt-20">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10">
+                <div class="space-y-3 sm:space-y-4">
                     <div class="flex items-center gap-2.5">
                         <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white">
                             <i data-lucide="plane" class="w-5 h-5 -rotate-45"></i>
@@ -1090,7 +1114,7 @@
                 </div>
 
                 <div>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Quick Links</h4>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3 sm:mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-xs">
                         <li><button onclick="UI.navigate('home')" class="hover:text-white transition">Home</button></li>
                         <li><button onclick="UI.navigate('flights')" class="hover:text-white transition">Search Flights</button></li>
@@ -1100,7 +1124,7 @@
                 </div>
 
                 <div>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Global Aviation Hubs</h4>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3 sm:mb-4">Global Aviation Hubs</h4>
                     <ul class="space-y-2 text-xs text-slate-400">
                         <li>Phnom Penh Techo (PNH)</li>
                         <li>Singapore Changi (SIN)</li>
@@ -1110,7 +1134,7 @@
                 </div>
 
                 <div>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Portfolio Project</h4>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3 sm:mb-4">Portfolio Project</h4>
                     <p class="text-xs text-slate-400 leading-relaxed mb-3">
                         Configured as a zero-database standalone demonstration for portfolio and live showcase deployment.
                     </p>
@@ -1121,9 +1145,9 @@
                 </div>
             </div>
 
-            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+            <div class="pt-6 sm:pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3 sm:gap-4 text-center sm:text-left">
                 <p>&copy; 2026 SkyBook Flight Booking System. All rights reserved.</p>
-                <div class="flex gap-6">
+                <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
                     <span class="hover:text-slate-400 cursor-pointer" onclick="UI.resetAllData()">Restore Seed Data</span>
                     <span>100% Client-Side State</span>
                     <span>Portfolio Ready</span>

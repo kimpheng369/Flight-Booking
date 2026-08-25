@@ -583,20 +583,24 @@ const UI = {
         const authContainer = document.getElementById('nav-user-container');
         const roleBadge = document.getElementById('active-role-indicator');
         const adminNavBtn = document.getElementById('nav-admin-link');
+        const mobileAdminNav = document.getElementById('mobile-admin-link');
 
         if (roleBadge) {
             roleBadge.textContent = user.role.toUpperCase();
             if (user.role === 'admin') {
-                roleBadge.className = 'px-2 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/40';
+                roleBadge.className = 'px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/40';
             } else if (user.role === 'customer') {
-                roleBadge.className = 'px-2 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider bg-blue-500/20 text-sky-300 border border-sky-500/40';
+                roleBadge.className = 'px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold tracking-wider bg-blue-500/20 text-sky-300 border border-sky-500/40';
             } else {
-                roleBadge.className = 'px-2 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider bg-slate-500/20 text-slate-300 border border-slate-500/40';
+                roleBadge.className = 'px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold tracking-wider bg-slate-500/20 text-slate-300 border border-slate-500/40';
             }
         }
 
         if (adminNavBtn) {
             adminNavBtn.classList.toggle('hidden', user.role !== 'admin');
+        }
+        if (mobileAdminNav) {
+            mobileAdminNav.classList.toggle('hidden', user.role !== 'admin');
         }
 
         if (authContainer) {
@@ -627,9 +631,9 @@ const UI = {
         store.search.tripType = type;
         document.querySelectorAll('.trip-tab-btn').forEach(btn => {
             if (btn.dataset.type === type) {
-                btn.className = 'trip-tab-btn px-4 py-1.5 rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition';
+                btn.className = 'trip-tab-btn flex-1 sm:flex-initial px-3 sm:px-4 py-1.5 rounded-lg sm:rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition whitespace-nowrap text-center';
             } else {
-                btn.className = 'trip-tab-btn px-4 py-1.5 rounded-xl font-semibold text-xs text-slate-600 hover:text-slate-900 transition';
+                btn.className = 'trip-tab-btn flex-1 sm:flex-initial px-3 sm:px-4 py-1.5 rounded-lg sm:rounded-xl font-semibold text-xs text-slate-600 hover:text-slate-900 transition whitespace-nowrap text-center';
             }
         });
 
@@ -735,9 +739,9 @@ const UI = {
         store.search.activeRegion = region;
         document.querySelectorAll('.region-chip-btn').forEach(btn => {
             if (btn.dataset.region === region) {
-                btn.className = 'region-chip-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-sm transition whitespace-nowrap';
+                btn.className = 'region-chip-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold bg-blue-600 text-white shadow-sm transition whitespace-nowrap';
             } else {
-                btn.className = 'region-chip-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap';
+                btn.className = 'region-chip-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition whitespace-nowrap';
             }
         });
         this.renderAirportPickerList();
@@ -763,36 +767,36 @@ const UI = {
 
         let html = `
             <!-- Any Airport Option -->
-            <div onclick="UI.selectAirport('')" class="airport-item p-3.5 rounded-2xl border border-slate-200 hover:border-blue-400 bg-white cursor-pointer flex items-center justify-between group">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-base group-hover:bg-blue-600 group-hover:text-white transition">
+            <div onclick="UI.selectAirport('')" class="airport-item p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border border-slate-200 hover:border-blue-400 bg-white cursor-pointer flex items-center justify-between group">
+                <div class="flex items-center gap-2.5 sm:gap-3">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-sm sm:text-base group-hover:bg-blue-600 group-hover:text-white transition shrink-0">
                         🌐
                     </div>
                     <div>
-                        <h4 class="text-sm font-black text-slate-900 group-hover:text-blue-600 transition">Any Airport Hub</h4>
-                        <p class="text-xs text-slate-400">Show all flights without filtering location</p>
+                        <h4 class="text-xs sm:text-sm font-black text-slate-900 group-hover:text-blue-600 transition">Any Airport Hub</h4>
+                        <p class="text-[10px] sm:text-xs text-slate-400">Show all flights without location filter</p>
                     </div>
                 </div>
-                <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-700">ANY</span>
+                <span class="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-mono font-bold bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-700 shrink-0">ANY</span>
             </div>
         `;
 
         filtered.forEach(ap => {
             html += `
-                <div onclick="UI.selectAirport('${ap.code}')" class="airport-item p-3.5 rounded-2xl border border-slate-200 hover:border-blue-400 bg-white cursor-pointer flex items-center justify-between group">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg group-hover:scale-105 transition">
+                <div onclick="UI.selectAirport('${ap.code}')" class="airport-item p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border border-slate-200 hover:border-blue-400 bg-white cursor-pointer flex items-center justify-between group">
+                    <div class="flex items-center gap-2.5 sm:gap-3 truncate pr-2">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-base sm:text-lg group-hover:scale-105 transition shrink-0">
                             ${ap.flag}
                         </div>
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <h4 class="text-sm font-black text-slate-900 group-hover:text-blue-600 transition">${ap.city}</h4>
-                                <span class="text-xs text-slate-400 font-semibold">• ${ap.country}</span>
+                        <div class="truncate">
+                            <div class="flex items-center gap-1.5 truncate">
+                                <h4 class="text-xs sm:text-sm font-black text-slate-900 group-hover:text-blue-600 transition truncate">${ap.city}</h4>
+                                <span class="text-[10px] sm:text-xs text-slate-400 font-semibold truncate">• ${ap.country}</span>
                             </div>
-                            <p class="text-xs text-slate-500 font-medium truncate max-w-[280px] sm:max-w-md">${ap.name}</p>
+                            <p class="text-[10px] sm:text-xs text-slate-500 font-medium truncate max-w-[170px] sm:max-w-[280px] md:max-w-md">${ap.name}</p>
                         </div>
                     </div>
-                    <span class="px-3 py-1 rounded-xl text-xs font-mono font-black bg-slate-100 text-slate-800 group-hover:bg-blue-600 group-hover:text-white transition shadow-sm">${ap.code}</span>
+                    <span class="px-2.5 sm:px-3 py-1 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-mono font-black bg-slate-100 text-slate-800 group-hover:bg-blue-600 group-hover:text-white transition shadow-sm shrink-0">${ap.code}</span>
                 </div>
             `;
         });
@@ -827,9 +831,9 @@ const UI = {
         store.search.cabin = cabinName;
         document.querySelectorAll('.cabin-option-btn').forEach(btn => {
             if (btn.dataset.cabin === cabinName) {
-                btn.className = 'cabin-option-btn py-2 px-3 rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition text-center';
+                btn.className = 'cabin-option-btn py-2 px-1.5 rounded-xl font-bold text-[11px] bg-blue-600 text-white shadow-sm transition text-center flex items-center justify-center gap-1';
             } else {
-                btn.className = 'cabin-option-btn py-2 px-3 rounded-xl font-semibold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center';
+                btn.className = 'cabin-option-btn py-2 px-1.5 rounded-xl font-semibold text-[11px] bg-slate-100 text-slate-700 hover:bg-slate-200 transition text-center flex items-center justify-center gap-1';
             }
         });
         this.updateSearchCardDisplays();
@@ -846,22 +850,22 @@ const UI = {
         const statsEl = document.getElementById('home-stats-counter');
         if (statsEl) {
             statsEl.innerHTML = `
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-center mt-12">
-                    <div class="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur">
-                        <div class="text-3xl font-black text-white">${store.flights.length}+</div>
-                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Active Routes</div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 max-w-4xl mx-auto text-center mt-8 sm:mt-12">
+                    <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur">
+                        <div class="text-2xl sm:text-3xl font-black text-white">${store.flights.length}+</div>
+                        <div class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mt-0.5 sm:mt-1">Active Routes</div>
                     </div>
-                    <div class="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur">
-                        <div class="text-3xl font-black text-sky-400">${store.airports.length}</div>
-                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Global Hubs</div>
+                    <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur">
+                        <div class="text-2xl sm:text-3xl font-black text-sky-400">${store.airports.length}</div>
+                        <div class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mt-0.5 sm:mt-1">Global Hubs</div>
                     </div>
-                    <div class="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur">
-                        <div class="text-3xl font-black text-amber-400">${store.airlines.length}</div>
-                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Premier Airlines</div>
+                    <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur">
+                        <div class="text-2xl sm:text-3xl font-black text-amber-400">${store.airlines.length}</div>
+                        <div class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mt-0.5 sm:mt-1">Premier Airlines</div>
                     </div>
-                    <div class="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur">
-                        <div class="text-3xl font-black text-emerald-400">99.8%</div>
-                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">On-Time Index</div>
+                    <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur">
+                        <div class="text-2xl sm:text-3xl font-black text-emerald-400">99.8%</div>
+                        <div class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mt-0.5 sm:mt-1">On-Time Index</div>
                     </div>
                 </div>
             `;
@@ -956,47 +960,47 @@ const UI = {
         ];
 
         destContainer.innerHTML = highlights.map(h => `
-            <div class="group relative rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between">
+            <div class="group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 flex flex-col justify-between">
                 
                 <!-- Destination Photo Header with Gradient Overlay -->
-                <div class="relative h-56 overflow-hidden bg-slate-800">
+                <div class="relative h-48 sm:h-56 overflow-hidden bg-slate-800">
                     <img src="${h.image}" alt="${h.city}" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 brightness-95 group-hover:brightness-105" loading="lazy" />
                     
                     <!-- Gradient Scrim for Text Readability -->
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent"></div>
                     
                     <!-- Top Badges -->
-                    <div class="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                        <span class="px-3 py-1 rounded-full text-xs font-black bg-white/90 backdrop-blur text-slate-900 shadow-md flex items-center gap-1.5">
+                    <div class="absolute top-3 sm:top-4 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between z-10">
+                        <span class="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-black bg-white/90 backdrop-blur text-slate-900 shadow-md flex items-center gap-1.5">
                             <span>${h.flag}</span>
                             <span class="font-mono text-blue-600">${h.code}</span>
                         </span>
-                        <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-blue-600/90 backdrop-blur text-white shadow-md">
+                        <span class="px-2.5 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-wider bg-blue-600/90 backdrop-blur text-white shadow-md">
                             ${h.tag}
                         </span>
                     </div>
 
                     <!-- Bottom City Title Over Image -->
-                    <div class="absolute bottom-4 left-4 right-4 z-10">
-                        <span class="text-xs font-bold text-sky-300 block">${h.country}</span>
-                        <h3 class="text-2xl font-black text-white tracking-tight leading-tight">${h.city}</h3>
+                    <div class="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 z-10">
+                        <span class="text-[11px] sm:text-xs font-bold text-sky-300 block">${h.country}</span>
+                        <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight">${h.city}</h3>
                     </div>
                 </div>
 
                 <!-- Card Content & Action -->
-                <div class="p-5 flex flex-col justify-between flex-1 space-y-4">
+                <div class="p-4 sm:p-5 flex flex-col justify-between flex-1 space-y-3 sm:space-y-4">
                     <p class="text-xs text-slate-600 leading-relaxed font-medium line-clamp-2">${h.desc}</p>
                     
                     <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
                         <div>
-                            <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Fares From</span>
+                            <span class="text-[9px] sm:text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Fares From</span>
                             <div class="flex items-baseline gap-1">
-                                <span class="text-2xl font-black text-slate-900">$${h.price}</span>
+                                <span class="text-xl sm:text-2xl font-black text-slate-900">$${h.price}</span>
                                 <span class="text-[10px] text-slate-400 font-semibold">/ adult</span>
                             </div>
                         </div>
 
-                        <button onclick="UI.searchDestination('${h.code}')" class="py-2.5 px-4 rounded-xl bg-blue-50 hover:bg-blue-600 text-blue-600 hover:text-white font-bold text-xs transition-all duration-300 flex items-center gap-1.5 shadow-sm group-hover:bg-blue-600 group-hover:text-white">
+                        <button onclick="UI.searchDestination('${h.code}')" class="py-2 px-3 sm:py-2.5 sm:px-4 rounded-xl bg-blue-50 hover:bg-blue-600 text-blue-600 hover:text-white font-bold text-xs transition-all duration-300 flex items-center gap-1.5 shadow-sm group-hover:bg-blue-600 group-hover:text-white">
                             <span>Book Flight</span>
                             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                         </button>
@@ -1005,7 +1009,6 @@ const UI = {
             </div>
         `).join('');
     },
-
 
     searchDestination(destCode) {
         store.search.destination = destCode;
@@ -1056,13 +1059,13 @@ const UI = {
 
         if (results.length === 0) {
             container.innerHTML = `
-                <div class="text-center py-16 px-6 bg-white rounded-3xl border border-slate-200 shadow-sm">
-                    <div class="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="plane-off" class="w-8 h-8"></i>
+                <div class="text-center py-12 sm:py-16 px-4 sm:px-6 bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="plane-off" class="w-7 h-7 sm:w-8 sm:h-8"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-800">No flights matched your filter</h3>
-                    <p class="text-sm text-slate-500 mt-1 mb-6">Try broadening your airport selection or price slider range.</p>
-                    <button onclick="UI.resetSearchFilters()" class="px-6 py-2.5 bg-blue-600 text-white font-bold text-xs rounded-xl shadow hover:bg-blue-700 transition">
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-800">No flights matched your filter</h3>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-1 mb-6">Try broadening your airport selection or price slider range.</p>
+                    <button onclick="UI.resetSearchFilters()" class="px-5 py-2.5 bg-blue-600 text-white font-bold text-xs rounded-xl shadow hover:bg-blue-700 transition">
                         Reset All Filters
                     </button>
                 </div>
@@ -1077,53 +1080,53 @@ const UI = {
             const destAp = store.getAirport(flight.destination);
 
             return `
-                <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
                     <!-- Left: Airline & Route Info -->
-                    <div class="flex-1 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl ${airline.logoColor} text-white font-black flex items-center justify-center text-sm shadow-sm">
+                    <div class="flex-1 space-y-3 sm:space-y-4">
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-2.5 sm:gap-3 truncate">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl ${airline.logoColor} text-white font-black flex items-center justify-center text-xs sm:text-sm shadow-sm shrink-0">
                                     ${airline.code}
                                 </div>
-                                <div>
-                                    <h4 class="text-base font-black text-slate-900 leading-tight">${airline.name}</h4>
-                                    <span class="text-xs font-mono text-slate-400 font-semibold">${flight.flightNumber} • ${flight.cabin}</span>
+                                <div class="truncate">
+                                    <h4 class="text-sm sm:text-base font-black text-slate-900 leading-tight truncate">${airline.name}</h4>
+                                    <span class="text-[10px] sm:text-xs font-mono text-slate-400 font-semibold">${flight.flightNumber} • ${flight.cabin}</span>
                                 </div>
                             </div>
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${flight.stops === 0 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'}">
-                                <i data-lucide="${flight.stops === 0 ? 'check' : 'clock'}" class="w-3.5 h-3.5"></i>
-                                ${flight.stopDetails}
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold shrink-0 ${flight.stops === 0 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'}">
+                                <i data-lucide="${flight.stops === 0 ? 'check' : 'clock'}" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i>
+                                <span>${flight.stopDetails}</span>
                             </span>
                         </div>
 
                         <!-- Schedule Timeline -->
-                        <div class="grid grid-cols-3 items-center text-center gap-2 pt-2">
+                        <div class="grid grid-cols-3 items-center text-center gap-1 sm:gap-2 pt-1 sm:pt-2">
                             <div class="text-left">
-                                <span class="text-2xl font-black text-slate-900">${flight.departureTime}</span>
-                                <span class="block text-sm font-bold text-slate-700 mt-0.5">${flight.origin}</span>
-                                <span class="block text-xs text-slate-400 truncate">${originAp.city}</span>
+                                <span class="text-xl sm:text-2xl font-black text-slate-900">${flight.departureTime}</span>
+                                <span class="block text-xs sm:text-sm font-bold text-slate-700 mt-0.5">${flight.origin}</span>
+                                <span class="block text-[10px] sm:text-xs text-slate-400 truncate">${originAp.city}</span>
                             </div>
 
-                            <div class="flex flex-col items-center px-2">
-                                <span class="text-[11px] font-bold text-slate-400">${flight.duration}</span>
-                                <div class="w-full flex items-center gap-1.5 my-1.5">
-                                    <span class="h-2 w-2 rounded-full bg-blue-600 ring-2 ring-blue-100"></span>
+                            <div class="flex flex-col items-center px-1 sm:px-2">
+                                <span class="text-[9px] sm:text-[11px] font-bold text-slate-400">${flight.duration}</span>
+                                <div class="w-full flex items-center gap-1 my-1 sm:my-1.5">
+                                    <span class="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-blue-600 ring-2 ring-blue-100 shrink-0"></span>
                                     <div class="flex-1 h-[2px] bg-slate-200 relative">
-                                        <i data-lucide="plane" class="w-3.5 h-3.5 text-blue-600 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90"></i>
+                                        <i data-lucide="plane" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-600 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90"></i>
                                     </div>
-                                    <span class="h-2 w-2 rounded-full bg-slate-400"></span>
+                                    <span class="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-slate-400 shrink-0"></span>
                                 </div>
-                                <span class="text-[10px] text-slate-400 font-medium">${flight.departureDate}</span>
+                                <span class="text-[9px] sm:text-[10px] text-slate-400 font-medium">${flight.departureDate}</span>
                             </div>
 
                             <div class="text-right">
-                                <span class="text-2xl font-black text-slate-900">${flight.arrivalTime}</span>
-                                <span class="block text-sm font-bold text-slate-700 mt-0.5">${flight.destination}</span>
-                                <span class="block text-xs text-slate-400 truncate">${destAp.city}</span>
+                                <span class="text-xl sm:text-2xl font-black text-slate-900">${flight.arrivalTime}</span>
+                                <span class="block text-xs sm:text-sm font-bold text-slate-700 mt-0.5">${flight.destination}</span>
+                                <span class="block text-[10px] sm:text-xs text-slate-400 truncate">${destAp.city}</span>
                             </div>
                         </div>
 
-                        <div class="flex items-center gap-4 text-xs text-slate-500 pt-2 border-t border-slate-100 font-medium">
+                        <div class="flex flex-wrap items-center gap-2 sm:gap-4 text-[10px] sm:text-xs text-slate-500 pt-2 border-t border-slate-100 font-medium">
                             <span class="flex items-center gap-1"><i data-lucide="luggage" class="w-3.5 h-3.5 text-slate-400"></i> ${flight.baggage}</span>
                             <span class="flex items-center gap-1"><i data-lucide="armchair" class="w-3.5 h-3.5 text-slate-400"></i> ${flight.availableSeats} seats left</span>
                             <span class="flex items-center gap-1 text-emerald-600"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Refundable</span>
@@ -1131,14 +1134,14 @@ const UI = {
                     </div>
 
                     <!-- Right: Price & Selection -->
-                    <div class="lg:w-48 flex lg:flex-col justify-between items-end lg:items-center border-t lg:border-t-0 lg:border-l border-slate-100 pt-4 lg:pt-0 lg:pl-6">
+                    <div class="lg:w-48 flex sm:flex-row lg:flex-col justify-between items-center border-t lg:border-t-0 lg:border-l border-slate-100 pt-3 sm:pt-4 lg:pt-0 lg:pl-6 gap-3">
                         <div class="text-left lg:text-center">
-                            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Price per Adult</span>
-                            <span class="text-3xl font-black text-slate-900">$${flight.price}</span>
-                            <span class="block text-[10px] text-slate-400">Taxes & fees included</span>
+                            <span class="text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Price per Adult</span>
+                            <span class="text-2xl sm:text-3xl font-black text-slate-900">$${flight.price}</span>
+                            <span class="block text-[9px] sm:text-[10px] text-slate-400">Taxes included</span>
                         </div>
-                        <button onclick="UI.openSeatModal('${flight.id}')" class="mt-3 w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-xs rounded-2xl shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
-                            <span>Select & Choose Seat</span>
+                        <button onclick="UI.openSeatModal('${flight.id}')" class="flex-1 sm:flex-initial w-full sm:w-auto py-2.5 sm:py-3 px-3.5 sm:px-4 bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-xs rounded-xl sm:rounded-2xl shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-[1.02] transition-all flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap">
+                            <span>Choose Seat</span>
                             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                         </button>
                     </div>
@@ -1175,13 +1178,13 @@ const UI = {
         const modal = document.getElementById('seat-selector-modal');
 
         document.getElementById('modal-flight-summary').innerHTML = `
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-xl ${airline.logoColor} text-white font-black flex items-center justify-center text-xs">
+            <div class="flex items-center gap-2.5 sm:gap-3">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl ${airline.logoColor} text-white font-black flex items-center justify-center text-xs shrink-0">
                     ${airline.code}
                 </div>
-                <div>
-                    <h4 class="text-sm font-black text-slate-900">${flight.flightNumber} — ${flight.origin} &rarr; ${flight.destination}</h4>
-                    <p class="text-xs text-slate-500">${flight.departureDate} at ${flight.departureTime} • ${airline.name}</p>
+                <div class="truncate">
+                    <h4 class="text-xs sm:text-sm font-black text-slate-900 truncate">${flight.flightNumber} — ${flight.origin} &rarr; ${flight.destination}</h4>
+                    <p class="text-[10px] sm:text-xs text-slate-500 truncate">${flight.departureDate} at ${flight.departureTime} • ${airline.name}</p>
                 </div>
             </div>
         `;
@@ -1227,11 +1230,11 @@ const UI = {
 
         let html = `
             <div class="airplane-nose flex items-center justify-center">
-                <i data-lucide="compass" class="w-4 h-4 text-slate-400"></i>
+                <i data-lucide="compass" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400"></i>
             </div>
-            <div class="airplane-fuselage p-6 max-w-md mx-auto space-y-3 bg-white">
-                <div class="text-center pb-2 border-b border-slate-100">
-                    <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Cockpit / Forward</span>
+            <div class="airplane-fuselage space-y-2 sm:space-y-3 bg-white">
+                <div class="text-center pb-1.5 sm:pb-2 border-b border-slate-100">
+                    <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Cockpit / Forward</span>
                 </div>
         `;
 
@@ -1241,16 +1244,16 @@ const UI = {
             const cabinName = isFirst ? 'First Class' : (isBiz ? 'Business Class' : 'Economy');
 
             if (r.row === 1) {
-                html += `<div class="text-center py-1 bg-amber-50 text-amber-800 text-[10px] font-bold rounded-lg uppercase tracking-wider flex items-center justify-center gap-1.5"><i class="fa-solid fa-star text-amber-500"></i> First Class Suites ($${store.activeBookingFlight.firstPrice})</div>`;
+                html += `<div class="text-center py-1 bg-amber-50 text-amber-800 text-[9px] sm:text-[10px] font-bold rounded-lg uppercase tracking-wider flex items-center justify-center gap-1"><i class="fa-solid fa-star text-amber-500"></i> First Class ($${store.activeBookingFlight.firstPrice})</div>`;
             } else if (r.row === 3) {
-                html += `<div class="text-center py-1 bg-indigo-50 text-indigo-800 text-[10px] font-bold rounded-lg uppercase tracking-wider mt-2 flex items-center justify-center gap-1.5"><i class="fa-solid fa-gem text-indigo-500"></i> Business Class Cabin ($${store.activeBookingFlight.businessPrice})</div>`;
+                html += `<div class="text-center py-1 bg-indigo-50 text-indigo-800 text-[9px] sm:text-[10px] font-bold rounded-lg uppercase tracking-wider mt-1.5 sm:mt-2 flex items-center justify-center gap-1"><i class="fa-solid fa-gem text-indigo-500"></i> Business Class ($${store.activeBookingFlight.businessPrice})</div>`;
             } else if (r.row === 6) {
-                html += `<div class="text-center py-1 bg-slate-100 text-slate-700 text-[10px] font-bold rounded-lg uppercase tracking-wider mt-2 flex items-center justify-center gap-1.5"><i class="fa-solid fa-plane text-slate-600"></i> Main Economy Cabin ($${store.activeBookingFlight.price})</div>`;
+                html += `<div class="text-center py-1 bg-slate-100 text-slate-700 text-[9px] sm:text-[10px] font-bold rounded-lg uppercase tracking-wider mt-1.5 sm:mt-2 flex items-center justify-center gap-1"><i class="fa-solid fa-plane text-slate-600"></i> Main Economy ($${store.activeBookingFlight.price})</div>`;
             }
 
             html += `<div class="flex items-center justify-between gap-1 py-0.5">`;
 
-            html += `<div class="flex items-center gap-1.5">`;
+            html += `<div class="flex items-center gap-1 sm:gap-1.5">`;
             colsLeft.forEach(col => {
                 const seatCode = `${r.row}${col}`;
                 const isOccupied = occupiedSeats.includes(seatCode);
@@ -1266,9 +1269,9 @@ const UI = {
             });
             html += `</div>`;
 
-            html += `<div class="w-6 text-center text-[10px] font-bold text-slate-300">${r.row}</div>`;
+            html += `<div class="w-4 sm:w-6 text-center text-[9px] sm:text-[10px] font-bold text-slate-300 shrink-0">${r.row}</div>`;
 
-            html += `<div class="flex items-center gap-1.5">`;
+            html += `<div class="flex items-center gap-1 sm:gap-1.5">`;
             colsRight.forEach(col => {
                 const seatCode = `${r.row}${col}`;
                 const isOccupied = occupiedSeats.includes(seatCode);
@@ -1288,8 +1291,8 @@ const UI = {
         });
 
         html += `
-                <div class="text-center pt-2 border-t border-slate-100">
-                    <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Aft Galley & Lavatories</span>
+                <div class="text-center pt-1.5 sm:pt-2 border-t border-slate-100">
+                    <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Aft Galley & Lavatories</span>
                 </div>
             </div>
         `;
@@ -1324,7 +1327,7 @@ const UI = {
         document.getElementById('checkout-pass-email').value = store.currentUser.email || 'alex.morgan@example.com';
 
         document.getElementById('checkout-fare-breakdown').innerHTML = `
-            <div class="space-y-2 text-xs">
+            <div class="space-y-1.5 sm:space-y-2 text-xs">
                 <div class="flex justify-between text-slate-600">
                     <span>Base Flight Fare (${flight.flightNumber})</span>
                     <span>$${flight.price}.00</span>
@@ -1341,7 +1344,7 @@ const UI = {
                     <span>Selected Seat ${store.selectedSeat} Fee</span>
                     <span>Included</span>
                 </div>
-                <div class="pt-2 border-t border-slate-200 flex justify-between font-black text-sm text-slate-900">
+                <div class="pt-2 border-t border-slate-200 flex justify-between font-black text-xs sm:text-sm text-slate-900">
                     <span>Total Amount Payable</span>
                     <span class="text-blue-600">$${store.selectedPrice + 24}.00</span>
                 </div>
@@ -1428,94 +1431,94 @@ const UI = {
 
         container.innerHTML = `
             <div class="boarding-pass-card grid grid-cols-1 md:grid-cols-4 border border-slate-200">
-                <div class="md:col-span-3 p-6 sm:p-8 space-y-6">
-                    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl ${airline.logoColor} text-white font-black flex items-center justify-center text-sm shadow-sm">
+                <div class="md:col-span-3 p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3 sm:pb-4">
+                        <div class="flex items-center gap-2.5 sm:gap-3">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl ${airline.logoColor} text-white font-black flex items-center justify-center text-xs sm:text-sm shadow-sm shrink-0">
                                 ${airline.code}
                             </div>
                             <div>
-                                <h3 class="text-lg font-black text-slate-900">${airline.name}</h3>
-                                <span class="text-xs font-semibold text-slate-400">Boarding Pass & Flight Ticket</span>
+                                <h3 class="text-base sm:text-lg font-black text-slate-900">${airline.name}</h3>
+                                <span class="text-[10px] sm:text-xs font-semibold text-slate-400">Boarding Pass & Flight Ticket</span>
                             </div>
                         </div>
                         <div class="text-right">
-                            <span class="text-[10px] uppercase font-extrabold tracking-widest text-slate-400 block">Class</span>
-                            <span class="px-3 py-1 bg-blue-50 text-blue-700 font-extrabold text-xs rounded-full border border-blue-200">${booking.cabinClass}</span>
+                            <span class="text-[9px] sm:text-[10px] uppercase font-extrabold tracking-widest text-slate-400 block">Class</span>
+                            <span class="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-blue-50 text-blue-700 font-extrabold text-[10px] sm:text-xs rounded-full border border-blue-200">${booking.cabinClass}</span>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-left">
                         <div>
-                            <span class="text-[10px] uppercase font-bold text-slate-400 block">Passenger</span>
-                            <span class="text-sm font-black text-slate-800 truncate block">${booking.passengerName}</span>
+                            <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 block">Passenger</span>
+                            <span class="text-xs sm:text-sm font-black text-slate-800 truncate block">${booking.passengerName}</span>
                         </div>
                         <div>
-                            <span class="text-[10px] uppercase font-bold text-slate-400 block">Flight No.</span>
-                            <span class="text-sm font-black text-blue-600">${flight.flightNumber}</span>
+                            <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 block">Flight No.</span>
+                            <span class="text-xs sm:text-sm font-black text-blue-600">${flight.flightNumber}</span>
                         </div>
                         <div>
-                            <span class="text-[10px] uppercase font-bold text-slate-400 block">Date</span>
-                            <span class="text-sm font-bold text-slate-800">${flight.departureDate}</span>
+                            <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 block">Date</span>
+                            <span class="text-xs sm:text-sm font-bold text-slate-800">${flight.departureDate}</span>
                         </div>
                         <div>
-                            <span class="text-[10px] uppercase font-bold text-slate-400 block">Booking Ref</span>
-                            <span class="text-sm font-mono font-bold text-slate-900">${booking.bookingReference}</span>
+                            <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 block">Booking Ref</span>
+                            <span class="text-xs sm:text-sm font-mono font-bold text-slate-900">${booking.bookingReference}</span>
                         </div>
                     </div>
 
-                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                    <div class="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
                         <div>
-                            <span class="text-3xl font-black text-slate-900">${flight.origin}</span>
-                            <span class="block text-xs font-bold text-slate-500">${originAp.city}</span>
-                            <span class="block text-[11px] text-slate-400 mt-1">Departs ${flight.departureTime}</span>
+                            <span class="text-2xl sm:text-3xl font-black text-slate-900">${flight.origin}</span>
+                            <span class="block text-[11px] sm:text-xs font-bold text-slate-500">${originAp.city}</span>
+                            <span class="block text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1">Departs ${flight.departureTime}</span>
                         </div>
-                        <div class="flex flex-col items-center px-4">
-                            <span class="text-[10px] font-bold text-slate-400">${flight.duration}</span>
-                            <i data-lucide="plane" class="w-5 h-5 text-blue-600 my-1"></i>
-                            <span class="text-[10px] font-semibold text-emerald-600">Gate Closes 15m Prior</span>
+                        <div class="flex flex-col items-center px-2 sm:px-4">
+                            <span class="text-[9px] sm:text-[10px] font-bold text-slate-400">${flight.duration}</span>
+                            <i data-lucide="plane" class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 my-0.5 sm:my-1"></i>
+                            <span class="text-[9px] sm:text-[10px] font-semibold text-emerald-600 text-center">Gate Closes 15m Prior</span>
                         </div>
                         <div class="text-right">
-                            <span class="text-3xl font-black text-slate-900">${flight.destination}</span>
-                            <span class="block text-xs font-bold text-slate-500">${destAp.city}</span>
-                            <span class="block text-[11px] text-slate-400 mt-1">Arrives ${flight.arrivalTime}</span>
+                            <span class="text-2xl sm:text-3xl font-black text-slate-900">${flight.destination}</span>
+                            <span class="block text-[11px] sm:text-xs font-bold text-slate-500">${destAp.city}</span>
+                            <span class="block text-[10px] sm:text-[11px] text-slate-400 mt-0.5 sm:mt-1">Arrives ${flight.arrivalTime}</span>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-4 gap-3 bg-blue-600 text-white rounded-2xl p-4 text-center shadow-lg shadow-blue-600/20">
+                    <div class="grid grid-cols-4 gap-2 sm:gap-3 bg-blue-600 text-white rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center shadow-lg shadow-blue-600/20">
                         <div>
-                            <span class="text-[9px] uppercase font-bold opacity-80 block">Gate</span>
-                            <span class="text-xl font-black">${booking.gate}</span>
+                            <span class="text-[8px] sm:text-[9px] uppercase font-bold opacity-80 block">Gate</span>
+                            <span class="text-base sm:text-xl font-black">${booking.gate}</span>
                         </div>
                         <div>
-                            <span class="text-[9px] uppercase font-bold opacity-80 block">Terminal</span>
-                            <span class="text-xl font-black">${booking.terminal}</span>
+                            <span class="text-[8px] sm:text-[9px] uppercase font-bold opacity-80 block">Terminal</span>
+                            <span class="text-base sm:text-xl font-black">${booking.terminal}</span>
                         </div>
                         <div>
-                            <span class="text-[9px] uppercase font-bold opacity-80 block">Seat</span>
-                            <span class="text-xl font-black text-amber-300">${booking.seatNumber}</span>
+                            <span class="text-[8px] sm:text-[9px] uppercase font-bold opacity-80 block">Seat</span>
+                            <span class="text-base sm:text-xl font-black text-amber-300">${booking.seatNumber}</span>
                         </div>
                         <div>
-                            <span class="text-[9px] uppercase font-bold opacity-80 block">Boarding</span>
-                            <span class="text-xl font-black">${booking.boardingTime}</span>
+                            <span class="text-[8px] sm:text-[9px] uppercase font-bold opacity-80 block">Boarding</span>
+                            <span class="text-base sm:text-xl font-black">${booking.boardingTime}</span>
                         </div>
                     </div>
 
-                    <div class="pt-2">
+                    <div class="pt-1 sm:pt-2">
                         <div class="barcode rounded-lg opacity-85"></div>
-                        <div class="text-center font-mono text-[9px] text-slate-400 tracking-widest mt-1">ETK//${booking.bookingReference}//${flight.flightNumber}//SEAT${booking.seatNumber}</div>
+                        <div class="text-center font-mono text-[8px] sm:text-[9px] text-slate-400 tracking-widest mt-1">ETK//${booking.bookingReference}//${flight.flightNumber}//SEAT${booking.seatNumber}</div>
                     </div>
                 </div>
 
-                <div class="boarding-pass-stub md:col-span-1 p-6 bg-slate-50 flex flex-col justify-between items-center text-center space-y-4">
+                <div class="boarding-pass-stub md:col-span-1 p-4 sm:p-6 bg-slate-50 flex flex-col justify-between items-center text-center space-y-3 sm:space-y-4">
                     <div>
-                        <span class="text-[10px] uppercase font-extrabold text-slate-400 tracking-wider">Flight Stub</span>
-                        <div class="text-base font-black text-slate-900 mt-1">${flight.origin} &rarr; ${flight.destination}</div>
+                        <span class="text-[9px] sm:text-[10px] uppercase font-extrabold text-slate-400 tracking-wider">Flight Stub</span>
+                        <div class="text-sm sm:text-base font-black text-slate-900 mt-1">${flight.origin} &rarr; ${flight.destination}</div>
                         <div class="text-xs font-bold text-blue-600 mt-0.5">${flight.flightNumber}</div>
                     </div>
 
-                    <div class="p-3 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=SkyBook-Ticket-${booking.bookingReference}-${booking.seatNumber}" alt="Boarding Pass QR" class="w-24 h-24 rounded-lg mx-auto" />
+                    <div class="p-2.5 sm:p-3 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=SkyBook-Ticket-${booking.bookingReference}-${booking.seatNumber}" alt="Boarding Pass QR" class="w-20 h-20 sm:w-24 sm:h-24 rounded-lg mx-auto" />
                     </div>
 
                     <div class="space-y-1 w-full text-xs">
@@ -1533,7 +1536,7 @@ const UI = {
                         </div>
                     </div>
 
-                    <span class="text-[9px] text-slate-400">Keep boarding pass with you during all airport checkpoints.</span>
+                    <span class="text-[8px] sm:text-[9px] text-slate-400">Keep boarding pass with you during all airport checkpoints.</span>
                 </div>
             </div>
         `;
@@ -1560,13 +1563,13 @@ const UI = {
 
         if (bookings.length === 0) {
             container.innerHTML = `
-                <div class="text-center py-16 px-6 bg-white rounded-3xl border border-slate-200 shadow-sm">
-                    <div class="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="ticket" class="w-8 h-8"></i>
+                <div class="text-center py-12 sm:py-16 px-4 sm:px-6 bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="ticket" class="w-7 h-7 sm:w-8 sm:h-8"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-800">No flight reservations yet</h3>
-                    <p class="text-sm text-slate-500 mt-1 mb-6">Book your first flight to view tickets, manage seats, and print boarding passes.</p>
-                    <button onclick="UI.navigate('flights')" class="px-6 py-2.5 bg-blue-600 text-white font-bold text-xs rounded-xl shadow hover:bg-blue-700 transition">
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-800">No flight reservations yet</h3>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-1 mb-6">Book your first flight to view tickets, manage seats, and print boarding passes.</p>
+                    <button onclick="UI.navigate('flights')" class="px-5 py-2.5 bg-blue-600 text-white font-bold text-xs rounded-xl shadow hover:bg-blue-700 transition">
                         Explore Flights
                     </button>
                 </div>
@@ -1581,52 +1584,52 @@ const UI = {
             const isCancelled = b.status === 'Cancelled';
 
             return `
-                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all space-y-4 ${isCancelled ? 'opacity-70 bg-slate-50' : ''}">
-                    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl ${airline.logoColor} text-white font-black flex items-center justify-center text-sm">
+                <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all space-y-3 sm:space-y-4 ${isCancelled ? 'opacity-70 bg-slate-50' : ''}">
+                    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3 sm:pb-4">
+                        <div class="flex items-center gap-2.5 sm:gap-3">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl ${airline.logoColor} text-white font-black flex items-center justify-center text-xs sm:text-sm shrink-0">
                                 ${airline.code}
                             </div>
                             <div>
-                                <span class="text-xs font-mono font-bold text-blue-600">${b.bookingReference}</span>
-                                <h4 class="text-base font-black text-slate-900">${flight.origin} &rarr; ${flight.destination}</h4>
+                                <span class="text-[10px] sm:text-xs font-mono font-bold text-blue-600">${b.bookingReference}</span>
+                                <h4 class="text-sm sm:text-base font-black text-slate-900">${flight.origin} &rarr; ${flight.destination}</h4>
                             </div>
                         </div>
 
                         <div class="flex items-center gap-2">
-                            <span class="px-3 py-1 rounded-full text-xs font-extrabold ${b.status === 'Confirmed' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : (b.status === 'Cancelled' ? 'bg-rose-50 text-rose-700 border border-rose-200' : 'bg-slate-100 text-slate-700')}">
+                            <span class="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-extrabold ${b.status === 'Confirmed' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : (b.status === 'Cancelled' ? 'bg-rose-50 text-rose-700 border border-rose-200' : 'bg-slate-100 text-slate-700')}">
                                 ${b.status}
                             </span>
-                            <span class="text-sm font-black text-slate-900">$${b.totalPrice}</span>
+                            <span class="text-xs sm:text-sm font-black text-slate-900">$${b.totalPrice}</span>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 text-xs">
                         <div>
-                            <span class="text-slate-400 block font-semibold">Passenger</span>
-                            <span class="font-bold text-slate-800">${b.passengerName}</span>
+                            <span class="text-slate-400 block font-semibold text-[10px] sm:text-xs">Passenger</span>
+                            <span class="font-bold text-slate-800 text-[11px] sm:text-xs">${b.passengerName}</span>
                         </div>
                         <div>
-                            <span class="text-slate-400 block font-semibold">Flight / Cabin</span>
-                            <span class="font-bold text-slate-800">${flight.flightNumber} • ${b.cabinClass}</span>
+                            <span class="text-slate-400 block font-semibold text-[10px] sm:text-xs">Flight / Cabin</span>
+                            <span class="font-bold text-slate-800 text-[11px] sm:text-xs">${flight.flightNumber} • ${b.cabinClass}</span>
                         </div>
                         <div>
-                            <span class="text-slate-400 block font-semibold">Seat Number</span>
-                            <span class="font-bold text-blue-600 font-mono">${b.seatNumber}</span>
+                            <span class="text-slate-400 block font-semibold text-[10px] sm:text-xs">Seat Number</span>
+                            <span class="font-bold text-blue-600 font-mono text-[11px] sm:text-xs">${b.seatNumber}</span>
                         </div>
                         <div>
-                            <span class="text-slate-400 block font-semibold">Departure</span>
-                            <span class="font-bold text-slate-800">${flight.departureDate} at ${flight.departureTime}</span>
+                            <span class="text-slate-400 block font-semibold text-[10px] sm:text-xs">Departure</span>
+                            <span class="font-bold text-slate-800 text-[11px] sm:text-xs">${flight.departureDate} at ${flight.departureTime}</span>
                         </div>
                     </div>
 
-                    <div class="flex flex-wrap items-center justify-end gap-3 pt-2 border-t border-slate-100">
+                    <div class="flex flex-wrap items-center justify-end gap-2 sm:gap-3 pt-2 border-t border-slate-100">
                         ${!isCancelled ? `
-                            <button onclick="UI.openBoardingPassModal('${b.id}')" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm flex items-center gap-1.5 transition">
+                            <button onclick="UI.openBoardingPassModal('${b.id}')" class="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm flex items-center gap-1.5 transition">
                                 <i data-lucide="printer" class="w-3.5 h-3.5"></i>
                                 <span>Boarding Pass & QR</span>
                             </button>
-                            <button onclick="UI.cancelBookingPrompt('${b.id}')" class="px-4 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold text-xs border border-rose-200 transition">
+                            <button onclick="UI.cancelBookingPrompt('${b.id}')" class="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold text-xs border border-rose-200 transition">
                                 Cancel Booking
                             </button>
                         ` : `
@@ -1674,17 +1677,17 @@ const UI = {
                 upcomingContainer.innerHTML = activeBookings.map(b => {
                     const flight = store.getFlight(b.flightId) || store.flights[0];
                     return `
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-xl bg-blue-600 text-white font-black flex items-center justify-center text-xs">
+                        <div class="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                            <div class="flex items-center gap-2.5 sm:gap-3">
+                                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-600 text-white font-black flex items-center justify-center text-xs shrink-0">
                                     <i data-lucide="plane-takeoff" class="w-4 h-4"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-bold text-slate-900">${flight.origin} &rarr; ${flight.destination} (${flight.flightNumber})</h4>
-                                    <p class="text-xs text-slate-500">${flight.departureDate} • Gate ${b.gate} • Seat ${b.seatNumber}</p>
+                                    <h4 class="text-xs sm:text-sm font-bold text-slate-900">${flight.origin} &rarr; ${flight.destination} (${flight.flightNumber})</h4>
+                                    <p class="text-[10px] sm:text-xs text-slate-500">${flight.departureDate} • Gate ${b.gate} • Seat ${b.seatNumber}</p>
                                 </div>
                             </div>
-                            <button onclick="UI.openBoardingPassModal('${b.id}')" class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-xs hover:bg-slate-100 transition shadow-sm">
+                            <button onclick="UI.openBoardingPassModal('${b.id}')" class="self-end sm:self-auto px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-xs hover:bg-slate-100 transition shadow-sm">
                                 View Pass
                             </button>
                         </div>
@@ -1716,18 +1719,18 @@ const UI = {
         tbody.innerHTML = store.flights.map(f => {
             const airline = store.getAirline(f.airlineId);
             return `
-                <tr class="border-b border-slate-100 hover:bg-slate-50/80 transition text-xs">
-                    <td class="py-3 px-4 font-mono font-bold text-blue-600">${f.flightNumber}</td>
-                    <td class="py-3 px-4 font-semibold text-slate-800">${airline.name}</td>
-                    <td class="py-3 px-4 font-bold text-slate-900">${f.origin} &rarr; ${f.destination}</td>
-                    <td class="py-3 px-4 text-slate-600">${f.departureDate} ${f.departureTime}</td>
-                    <td class="py-3 px-4 font-black text-slate-900">$${f.price}</td>
-                    <td class="py-3 px-4">
-                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${f.availableSeats < 10 ? 'bg-amber-50 text-amber-700' : 'bg-emerald-50 text-emerald-700'}">
+                <tr class="border-b border-slate-100 hover:bg-slate-50/80 transition text-[11px] sm:text-xs">
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4 font-mono font-bold text-blue-600">${f.flightNumber}</td>
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4 font-semibold text-slate-800">${airline.name}</td>
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4 font-bold text-slate-900">${f.origin} &rarr; ${f.destination}</td>
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4 text-slate-600">${f.departureDate} ${f.departureTime}</td>
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4 font-black text-slate-900">$${f.price}</td>
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4">
+                        <span class="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold ${f.availableSeats < 10 ? 'bg-amber-50 text-amber-700' : 'bg-emerald-50 text-emerald-700'}">
                             ${f.availableSeats} / ${f.totalSeats}
                         </span>
                     </td>
-                    <td class="py-3 px-4 text-right">
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4 text-right">
                         <button onclick="UI.deleteFlightPrompt('${f.id}')" class="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-rose-50 transition" title="Delete Flight">
                             <i data-lucide="trash-2" class="w-4 h-4"></i>
                         </button>
@@ -1744,14 +1747,14 @@ const UI = {
         tbody.innerHTML = store.bookings.map(b => {
             const flight = store.getFlight(b.flightId) || store.flights[0];
             return `
-                <tr class="border-b border-slate-100 hover:bg-slate-50/80 transition text-xs">
-                    <td class="py-3 px-4 font-mono font-bold text-slate-900">${b.bookingReference}</td>
-                    <td class="py-3 px-4 font-semibold text-slate-800">${b.passengerName}</td>
-                    <td class="py-3 px-4 font-bold text-blue-600">${flight.flightNumber}</td>
-                    <td class="py-3 px-4 font-mono text-slate-700">${b.seatNumber} (${b.cabinClass})</td>
-                    <td class="py-3 px-4 font-black text-slate-900">$${b.totalPrice}</td>
-                    <td class="py-3 px-4">
-                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${b.status === 'Confirmed' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}">
+                <tr class="border-b border-slate-100 hover:bg-slate-50/80 transition text-[11px] sm:text-xs">
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4 font-mono font-bold text-slate-900">${b.bookingReference}</td>
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4 font-semibold text-slate-800">${b.passengerName}</td>
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4 font-bold text-blue-600">${flight.flightNumber}</td>
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4 font-mono text-slate-700">${b.seatNumber} (${b.cabinClass})</td>
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4 font-black text-slate-900">$${b.totalPrice}</td>
+                    <td class="py-2.5 sm:py-3 px-3 sm:px-4">
+                        <span class="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold ${b.status === 'Confirmed' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}">
                             ${b.status}
                         </span>
                     </td>
@@ -1887,13 +1890,13 @@ const UI = {
 
         msgEl.textContent = message;
         if (type === 'success') {
-            toast.className = 'fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-emerald-900/90 text-white border border-emerald-500 shadow-2xl backdrop-blur transition-all duration-300 transform translate-y-0 opacity-100';
+            toast.className = 'fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-50 flex items-center gap-3 px-4 py-3 sm:px-5 sm:py-3.5 rounded-2xl bg-emerald-900/95 text-white border border-emerald-500 shadow-2xl backdrop-blur transition-all duration-300 transform translate-y-0 opacity-100';
             iconEl.setAttribute('data-lucide', 'check-circle-2');
         } else if (type === 'error') {
-            toast.className = 'fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-rose-900/90 text-white border border-rose-500 shadow-2xl backdrop-blur transition-all duration-300 transform translate-y-0 opacity-100';
+            toast.className = 'fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-50 flex items-center gap-3 px-4 py-3 sm:px-5 sm:py-3.5 rounded-2xl bg-rose-900/95 text-white border border-rose-500 shadow-2xl backdrop-blur transition-all duration-300 transform translate-y-0 opacity-100';
             iconEl.setAttribute('data-lucide', 'alert-circle');
         } else {
-            toast.className = 'fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-slate-900/90 text-white border border-slate-700 shadow-2xl backdrop-blur transition-all duration-300 transform translate-y-0 opacity-100';
+            toast.className = 'fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-50 flex items-center gap-3 px-4 py-3 sm:px-5 sm:py-3.5 rounded-2xl bg-slate-900/95 text-white border border-slate-700 shadow-2xl backdrop-blur transition-all duration-300 transform translate-y-0 opacity-100';
             iconEl.setAttribute('data-lucide', 'info');
         }
 
